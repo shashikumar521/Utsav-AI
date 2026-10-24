@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Utsav AI — Every celebration, beautifully planned.</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#392538", // Deep Plum
+          "primary-dark": "#231123",
+          "secondary": "#C5A46D", // Champagne Gold
+          "secondary-dark": "#755a2a",
+          "terracotta": "#C97862", // Soft Terracotta
+          "ivory": "#FAF7F0", // Warm Ivory base
+          "surface": "#FAF7F0",
+          "surface-container": "#F4EFE6",
+          "surface-container-high": "#ECE6DA",
+          "surface-container-lowest": "#FFFFFF",
+          "on-surface": "#1C1C18",
+          "on-surface-variant": "#4C454A",
+          "outline-soft": "#E2DACF"
+        },
+        fontFamily: {
+          "serif": ["Playfair Display", "serif"],
+          "sans": ["Plus Jakarta Sans", "sans-serif"]
+        }
+      }
+    }
+  }
+</script><style>
+  @layer base {
+    body {
+      background-color: #FAF7F0;
+      color: #1C1C18;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+  }
+  /* Subtle floating keyframes */
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+  @keyframes petalFall {
+    0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.85; }
+    80% { opacity: 0.85; }
+    100% { transform: translate(60px, 120vh) rotate(360deg); opacity: 0; }
+  }
+  @keyframes lanternBob {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-16px) rotate(2deg); }
+  }
+  @keyframes shimmerPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.9; transform: scale(1.08); }
+  }
+  .animate-float { animation: gentleFloat 6s ease-in-out infinite; }
+  .animate-lantern { animation: lanternBob 7s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmerPulse 3.5s ease-in-out infinite; }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style><meta content="web_dashboard" name="shell-type"/></head><body class="antialiased min-h-screen relative selection:bg-secondary/30 selection:text-primary">
+<!-- =========================================================================
+     CINEMATIC ANIMATED CELEBRATION WELCOME EXPERIENCE MODAL / OVERLAY
+========================================================================= -->
+<aside aria-label="Celebration Welcome Experience" aria-modal="true" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 transition-all duration-700 ease-out bg-[#FAF7F0]/95 backdrop-blur-2xl" id="welcome-modal" role="dialog">
+<!-- Glowing Floating Lanterns Decor -->
+<div class="pointer-events-none absolute inset-0 overflow-hidden">
+<!-- Lantern 1 Left Top -->
+<div class="absolute top-[8%] left-[6%] sm:left-[10%] animate-lantern opacity-85">
+<div class="relative w-14 h-20 sm:w-16 sm:h-24 rounded-full bg-gradient-to-b from-[#C5A46D]/40 via-[#C97862]/60 to-[#392538]/70 shadow-[0_0_40px_16px_rgba(197,164,109,0.35)] flex items-center justify-center">
+<div class="w-4 h-6 rounded-full bg-secondary/80 blur-[2px] animate-pulse"></div>
+<div class="absolute -top-3 w-6 h-3 rounded-t-md bg-[#C5A46D]"></div>
+<div class="absolute -bottom-2 w-3 h-4 bg-terracotta/80 rounded-b"></div>
+</div>
+</div>
+<!-- Lantern 2 Right Top -->
+<div class="absolute top-[12%] right-[8%] sm:right-[12%] animate-lantern opacity-90" style="animation-delay: -2.5s;">
+<div class="relative w-16 h-24 sm:w-20 sm:h-28 rounded-full bg-gradient-to-b from-[#FAF7F0] via-[#C5A46D]/60 to-[#C97862]/80 shadow-[0_0_50px_20px_rgba(201,120,98,0.35)] flex items-center justify-center">
+<div class="w-5 h-8 rounded-full bg-amber-200/90 blur-[2px] animate-pulse"></div>
+<div class="absolute -top-3 w-8 h-3 rounded-t-md bg-[#392538]"></div>
+<div class="absolute -bottom-3 w-4 h-5 bg-secondary rounded-b"></div>
+</div>
+</div>
+<!-- Lantern 3 Bottom Left -->
+<div class="hidden sm:block absolute bottom-[14%] left-[14%] animate-lantern opacity-75" style="animation-delay: -4s;">
+<div class="relative w-12 h-16 rounded-full bg-gradient-to-b from-[#C5A46D]/50 to-[#392538]/80 shadow-[0_0_35px_12px_rgba(197,164,109,0.25)] flex items-center justify-center">
+<div class="w-3 h-5 rounded-full bg-yellow-100 blur-[1px]"></div>
+</div>
+</div>
+<!-- Floating Marigold Petals (CSS driven) -->
+<div class="absolute w-4 h-6 rounded-full bg-amber-500/80 blur-[0.5px] pointer-events-none" style="top: -10px; left: 22%; animation: petalFall 9s linear infinite; animation-delay: 0.2s;"></div>
+<div class="absolute w-3 h-5 rounded-full bg-[#C97862]/90 pointer-events-none" style="top: -10px; left: 45%; animation: petalFall 11s linear infinite; animation-delay: 2.1s;"></div>
+<div class="absolute w-4 h-5 rounded-full bg-amber-400/85 pointer-events-none" style="top: -10px; left: 78%; animation: petalFall 8.5s linear infinite; animation-delay: 1.4s;"></div>
+<div class="absolute w-3 h-4 rounded-full bg-amber-600/70 pointer-events-none" style="top: -10px; left: 63%; animation: petalFall 10s linear infinite; animation-delay: 4s;"></div>
+<!-- Gold Shimmer Particles -->
+<div class="absolute top-1/4 left-1/3 w-3 h-3 rounded-full bg-[#C5A46D] blur-[1px] animate-shimmer"></div>
+<div class="absolute top-2/3 right-1/4 w-2.5 h-2.5 rounded-full bg-[#C5A46D] blur-[1px] animate-shimmer" style="animation-delay: 1.8s;"></div>
+<div class="absolute top-1/2 left-1/5 w-2 h-2 rounded-full bg-amber-300 blur-[0.5px] animate-shimmer" style="animation-delay: 0.9s;"></div>
+</div>
+<!-- Modal Center Stage Card -->
+<div class="relative w-full max-w-xl mx-auto rounded-3xl bg-surface-container-lowest/90 border border-secondary/30 shadow-[0_24px_70px_-15px_rgba(57,37,56,0.22)] p-7 sm:p-10 text-center flex flex-col items-center gap-6 z-10 transition-transform duration-500">
+<!-- Dismiss Skip Button -->
+<button aria-label="Skip intro to celebration studio" class="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors group" id="dismiss-modal-btn">
+<span class="material-symbols-outlined text-xl group-hover:rotate-90 transition-transform duration-300">close</span>
+</button>
+<!-- Brand Emblem -->
+<div class="relative flex flex-col items-center">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary flex items-center justify-center shadow-lg ring-4 ring-secondary/25 p-2">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<div class="mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-secondary-dark font-sans text-xs tracking-widest uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-terracotta animate-ping"></span>
+        Welcome to Utsav AI
+      </div>
+</div>
+<!-- Tagline & Serene Typography -->
+<div class="flex flex-col gap-2">
+<h2 class="font-serif text-3xl sm:text-4xl text-primary font-medium tracking-tight leading-tight">
+        Every celebration, <br class="hidden sm:inline"/>
+<span class="italic text-secondary-dark">beautifully planned.</span>
+</h2>
+<p class="font-serif italic text-lg sm:text-xl text-terracotta tracking-wide font-normal">
+        Dream it. Plan it. Celebrate it.
+      </p>
+<p class="font-sans text-sm sm:text-base text-on-surface-variant max-w-md mx-auto mt-1 leading-relaxed">
+        Step into an atelier where heartfelt traditions, exquisite aesthetics, and intelligent logistics align seamlessly for your milestone moments.
+      </p>
+</div>
+<!-- Dual Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-1">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-primary text-ivory hover:bg-primary-dark font-sans text-sm font-semibold tracking-wide shadow-md hover:shadow-lg transition-all duration-300 ring-1 ring-secondary/30" onclick="dismissWelcomeModal('plan')">
+<span>Plan My Celebration</span>
+<span class="material-symbols-outlined text-base text-secondary">auto_awesome</span>
+</button>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-surface-container text-primary hover:bg-surface-container-high font-sans text-sm font-semibold tracking-wide transition-colors" onclick="dismissWelcomeModal('explore')">
+<span>Explore Utsav AI</span>
+<span class="material-symbols-outlined text-base text-secondary-dark">arrow_forward</span>
+</button>
+</div>
+<!-- Subtle Quick Skip Link -->
+<button class="text-xs font-sans text-on-surface-variant/80 hover:text-primary underline underline-offset-4 decoration-secondary/50" onclick="dismissWelcomeModal()">
+      Skip directly to celebration studio (Esc)
+    </button>
+</div>
+</aside>
+<!-- =========================================================================
+     COMPACT EDITORIAL SITE HEADER
+========================================================================= -->
+<header class="sticky top-0 z-40 w-full bg-[#FAF7F0]/90 backdrop-blur-md border-b border-outline-soft/80 shadow-[0_4px_20px_-4px_rgba(57,37,56,0.04)]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+<!-- Brand -->
+<a class="flex items-center gap-3 focus:outline-none" href="#">
+<div class="w-9 h-9 rounded-lg bg-primary p-1 flex items-center justify-center shadow-sm">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<div class="flex flex-col leading-tight">
+<span class="font-serif text-xl tracking-tight text-primary font-bold">Utsav AI</span>
+<span class="font-sans text-[10px] tracking-widest uppercase text-secondary-dark font-medium">Celebration Studio</span>
+</div>
+</a>
+<!-- Compact Navigation Links -->
+<nav class="hidden md:flex items-center gap-1 font-sans text-xs lg:text-sm font-medium text-on-surface-variant">
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#quick-plan">Quick Plan</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#featured-events">Celebrations</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#how-it-works">Methodology</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#benefits">AI Benefits</a>
+</nav>
+<!-- Header CTA & Quick Controls -->
+<div class="flex items-center gap-2.5">
+<button class="p-2 rounded-lg text-secondary-dark hover:text-primary hover:bg-surface-container transition-colors inline-flex items-center gap-1 text-xs font-semibold" onclick="reopenWelcomeModal()" title="Replay celebration welcome experience">
+<span class="material-symbols-outlined text-base">magic_button</span>
+<span class="hidden sm:inline">Intro</span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-ivory text-xs sm:text-sm font-semibold hover:bg-primary-dark transition shadow-sm" href="#quick-plan">
+<span>Start Planning</span>
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<main class="w-full"><div class="flex flex-col w-full">
+<!-- COMPACT LAPTOP COMMAND CENTER ATELIER WRAPPER -->
+<div class="flex w-full min-h-[calc(100vh-4rem)] max-w-[1536px] mx-auto px-2 sm:px-4 py-3 gap-3.5">
+<!-- PERSISTENT EDITORIAL SIDEBAR -->
+<aside class="hidden lg:flex flex-col w-64 shrink-0 bg-surface-container-lowest rounded-2xl shadow-sm p-4 justify-between" style="border: 1px solid #E8E1D5;">
+<div class="flex flex-col gap-5">
+<!-- Brand Signature -->
+<div class="flex items-center gap-3 px-2 pt-1">
+<img alt="Utsav AI Brandmark" class="w-9 h-9 rounded-lg object-cover shadow-xs" src="https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight font-serif leading-none">Utsav AI</span>
+<span class="font-label-xs text-label-xs text-secondary tracking-widest uppercase mt-0.5">Command Center</span>
+</div>
+</div>
+<!-- Navigation Stack -->
+<nav aria-label="Studio Navigation" class="flex flex-col gap-1">
+<!-- Active Overview -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-primary text-surface-container-lowest transition-all group" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-title-lg text-secondary-fixed">dashboard</span>
+<span class="font-label-lg text-label-lg font-medium">Overview</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse"></span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#events">
+<span class="material-symbols-outlined text-title-lg text-outline">calendar_month</span>
+<span class="font-body-md text-body-md">My Events</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#budget">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-title-lg text-outline">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Budget Studio</span>
+</div>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-semibold">₹10L</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#timeline">
+<span class="material-symbols-outlined text-title-lg text-outline">checklist_rtl</span>
+<span class="font-body-md text-body-md">Timeline &amp; Tasks</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#moodboard">
+<span class="material-symbols-outlined text-title-lg text-outline">palette</span>
+<span class="font-body-md text-body-md">Moodboard Studio</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#guests">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-title-lg text-outline">group</span>
+<span class="font-body-md text-body-md">Guests &amp; Vendors</span>
+</div>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-tertiary font-bold">142</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-primary hover:bg-surface-container transition-all" href="#ai-assistant" style="border: 1px dashed #C5A46D;">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-title-lg text-secondary">auto_awesome</span>
+<span class="font-label-md text-label-md font-semibold">AI Assistant</span>
+</div>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-secondary-fixed text-primary font-bold">PRO</span>
+</a>
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" href="#settings">
+<span class="material-symbols-outlined text-title-lg text-outline">tune</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footprint: User Profile & Currency -->
+<div class="flex flex-col gap-2 pt-3" style="border-top: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between px-2 py-1.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-7 h-7 rounded-full bg-primary text-secondary-fixed flex items-center justify-center font-serif text-label-md font-semibold shrink-0">
+              PS
+            </div>
+<div class="flex flex-col truncate">
+<span class="font-label-md text-label-md text-primary font-semibold truncate leading-tight">Priya Sharma</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Primary Host</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded-full bg-surface-container text-secondary font-bold tracking-wider">₹ INR</span>
+</div>
+</div>
+</aside>
+<!-- MAIN DASHBOARD CANVASES -->
+<section class="flex flex-col flex-1 min-w-0 gap-3">
+<!-- LAPTOP CONTROL BAR (Event Switcher + Fast Actions) -->
+<header class="flex flex-wrap items-center justify-between gap-2.5 px-4 py-2.5 bg-surface-container-lowest rounded-xl shadow-xs" style="border: 1px solid #E8E1D5;">
+<!-- Event Switcher Dropdown Trigger -->
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-title-lg">temple_hindu</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<h1 class="font-title-md text-title-md text-primary font-semibold truncate leading-none">
+                Ananya &amp; Kabir’s Sunset Wedding
+              </h1>
+<span class="material-symbols-outlined text-body-sm text-outline cursor-pointer hover:text-primary transition-colors">unfold_more</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-label-xs text-secondary">location_on</span> Ahmedabad, Gujarat · Nov 14, 2025
+            </span>
+</div>
+</div>
+<!-- Utility Buttons -->
+<div class="flex items-center gap-2">
+<!-- Notification Bell -->
+<button aria-label="Notifications" class="relative p-2 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" title="3 Updates">
+<span class="material-symbols-outlined text-title-lg">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest"></span>
+</button>
+<!-- Quick AI Action Button -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-all font-label-md text-label-md" onclick="handleQuickAIAction()">
+<span class="material-symbols-outlined text-label-lg text-secondary">bolt</span>
+<span class="hidden sm:inline">Quick AI Action</span>
+</button>
+<!-- Plan My Celebration Primary Action -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary text-surface-container-lowest hover:bg-on-surface font-label-md text-label-md shadow-xs transition-all" onclick="openDrawer('timeline')">
+<span>Plan My Celebration</span>
+<span class="material-symbols-outlined text-label-md text-secondary-fixed">auto_awesome</span>
+</button>
+</div>
+</header>
+<!-- TOP GREETING & HIGH-ELEVATION STATUS STRIP -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 py-2 bg-gradient-to-r from-surface-container to-surface-container-low rounded-xl" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs text-secondary-dark font-serif tracking-widest uppercase">Namaste</span>
+<span class="text-outline-variant">/</span>
+<p class="font-title-md text-title-md text-primary font-medium">
+            Welcome back, <span class="font-serif italic font-semibold">Priya!</span> Let's make your celebration unforgettable.
+          </p>
+</div>
+<div class="flex items-center gap-2 self-start sm:self-auto">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest text-secondary-dark text-label-xs font-semibold shadow-2xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>In Progress · 78% Ready</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">ID: UTS-AMD-25</span>
+</div>
+</div>
+<!-- 4 COMPACT SUMMARY CARDS (Balanced Metric Bar) -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+<!-- Metric 1: Countdown & Date -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:shadow-sm transition-all" style="border: 1px solid #E8E1D5;">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Celebration Date</span>
+<span class="font-headline-sm text-headline-sm text-primary font-serif font-semibold mt-0.5">Nov 14</span>
+<span class="font-label-sm text-label-md text-secondary-dark font-medium">18 Days to Go</span>
+</div>
+<div class="relative w-12 h-12 flex items-center justify-center shrink-0">
+<svg class="w-12 h-12 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="82, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute font-label-xs text-label-xs font-bold text-primary">82%</span>
+</div>
+</div>
+<!-- Metric 2: Budget Health -->
+<div class="flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:shadow-sm transition-all" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Total Allocation</span>
+<span class="font-label-xs text-label-xs text-secondary-dark font-bold">₹10,00,000</span>
+</div>
+<div class="my-1">
+<span class="font-headline-sm text-headline-sm text-primary font-serif font-semibold">₹2,68,000</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant block">Remaining Unlocked</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 73.2%"></div>
+<div class="bg-secondary-fixed-dim h-full" style="width: 26.8%"></div>
+</div>
+</div>
+<!-- Metric 3: Task Completion -->
+<div class="flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:shadow-sm transition-all" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Planning Tasks</span>
+<span class="font-label-xs text-label-xs font-semibold px-1.5 py-0.2 rounded bg-surface-container text-primary">77.7%</span>
+</div>
+<div class="my-1">
+<span class="font-headline-sm text-headline-sm text-primary font-serif font-semibold">28 <span class="font-sans text-title-md text-on-surface-variant font-normal">/ 36</span></span>
+<span class="font-label-xs text-label-xs text-on-surface-variant block">8 Pending Approval</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 77.7%"></div>
+</div>
+</div>
+<!-- Metric 4: Guest Confirmation Status -->
+<div class="flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:shadow-sm transition-all" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">RSVP Momentum</span>
+<span class="font-label-xs text-label-xs text-secondary-dark font-medium">200 Invited</span>
+</div>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-headline-sm text-headline-sm text-primary font-serif font-semibold">142</span>
+<span class="font-label-xs text-label-xs text-secondary font-semibold">Confirmed</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 38 Awaited</span>
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span> 20 Declined</span>
+</div>
+</div>
+</div>
+<!-- BALANCED TWO-COLUMN LAPTOP WORKBENCH -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 min-h-0">
+<!-- LEFT COLUMN: Urgent Tasks + Chronological Horizon (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-3">
+<!-- Urgent Critical Tasks Card -->
+<div class="p-3.5 bg-surface-container-lowest rounded-xl shadow-xs flex flex-col justify-between" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-title-lg text-primary">priority_high</span>
+<h2 class="font-title-md text-title-md text-primary font-serif font-semibold">Urgent Critical Tasks</h2>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded-full bg-secondary-fixed text-primary font-bold">3 Due Soon</span>
+</div>
+<button class="font-label-xs text-label-xs text-secondary hover:text-primary font-semibold transition-colors flex items-center gap-0.5" onclick="openDrawer('timeline')">
+<span>View All Tasks</span>
+<span class="material-symbols-outlined text-label-sm">chevron_right</span>
+</button>
+</div>
+<!-- Task Items -->
+<div class="flex flex-col gap-2">
+<!-- Task Item 1 -->
+<div class="group flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center gap-2.5 min-w-0">
+<input class="w-4 h-4 rounded text-primary focus:ring-secondary cursor-pointer" id="task-1" onchange="toggleTask(this)" type="checkbox"/>
+<div class="flex flex-col min-w-0">
+<label class="font-label-md text-label-md text-primary font-medium truncate cursor-pointer group-hover:text-primary-dark" for="task-1">
+                      Approve Kathiyawadi Tasting Menu
+                    </label>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-1.5">
+<span class="text-tertiary font-semibold">Due Tomorrow · 4:00 PM</span>
+<span>·</span>
+<span>Assignee: Chef Rasikbhai</span>
+</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium shrink-0">Catering</span>
+</div>
+<!-- Task Item 2 -->
+<div class="group flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center gap-2.5 min-w-0">
+<input class="w-4 h-4 rounded text-primary focus:ring-secondary cursor-pointer" id="task-2" onchange="toggleTask(this)" type="checkbox"/>
+<div class="flex flex-col min-w-0">
+<label class="font-label-md text-label-md text-primary font-medium truncate cursor-pointer group-hover:text-primary-dark" for="task-2">
+                      Finalize Mandap Floral Setup &amp; Canopy Colors
+                    </label>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-1.5">
+<span class="text-secondary-dark font-semibold">Due Oct 31</span>
+<span>·</span>
+<span>Assignee: Royal Decor Studio</span>
+</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium shrink-0">Design</span>
+</div>
+<!-- Task Item 3 -->
+<div class="group flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center gap-2.5 min-w-0">
+<input class="w-4 h-4 rounded text-primary focus:ring-secondary cursor-pointer" id="task-3" onchange="toggleTask(this)" type="checkbox"/>
+<div class="flex flex-col min-w-0">
+<label class="font-label-md text-label-md text-primary font-medium truncate cursor-pointer group-hover:text-primary-dark" for="task-3">
+                      Send Digital WhatsApp Video Invites
+                    </label>
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-1.5">
+<span class="text-secondary-dark font-semibold">Due Nov 02</span>
+<span>·</span>
+<span>Assignee: Kabir &amp; Ananya</span>
+</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium shrink-0">Invites</span>
+</div>
+</div>
+</div>
+<!-- Chronological Milestone Horizon Tracker -->
+<div class="p-3.5 bg-surface-container-lowest rounded-xl shadow-xs flex flex-col justify-between" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-title-lg text-secondary">alt_route</span>
+<h3 class="font-title-md text-title-md text-primary font-serif font-semibold">Celebration Horizon</h3>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Phase 3 of 5</span>
+</div>
+<!-- Horizontal Track -->
+<div class="relative flex items-center justify-between mt-2 pt-1 pb-1">
+<div class="absolute left-3 right-3 top-1/2 -translate-y-1/2 h-0.5 bg-surface-container-high -z-0"></div>
+<!-- Node 1: Completed -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-secondary text-surface-container-lowest flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-label-xs">check</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Concept</span>
+</div>
+<!-- Node 2: Completed -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-secondary text-surface-container-lowest flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-label-xs">check</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Vendors</span>
+</div>
+<!-- Node 3: Active Stage -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-7 h-7 rounded-full bg-primary text-secondary-fixed flex items-center justify-center ring-4 ring-secondary-fixed/40 shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-label-sm">flag</span>
+</div>
+<span class="font-label-xs text-label-xs text-primary font-bold">Logistics</span>
+</div>
+<!-- Node 4: Upcoming -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-label-xs">celebration</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Rehearsals</span>
+</div>
+<!-- Node 5: Destination -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-label-xs">favorite</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Wedding Day</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Budget Breakdown + AI Insight Concierge (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-3">
+<!-- Budget Breakdown Snapshot Card -->
+<div class="p-3.5 bg-surface-container-lowest rounded-xl shadow-xs flex flex-col justify-between" style="border: 1px solid #E8E1D5;">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-title-lg text-primary">pie_chart</span>
+<h3 class="font-title-md text-title-md text-primary font-serif font-semibold">Budget Breakdown</h3>
+</div>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container hover:bg-surface-container-high text-secondary-dark font-label-xs text-label-xs font-semibold transition-all" onclick="findAiSavings()">
+<span class="material-symbols-outlined text-label-sm">savings</span>
+<span>Find AI Savings</span>
+</button>
+</div>
+<!-- Segmented Color Bar -->
+<div class="w-full h-2 rounded-full overflow-hidden flex bg-surface-container-high my-1.5">
+<div class="bg-primary h-full" style="width: 38%" title="Catering 38%"></div>
+<div class="bg-secondary h-full" style="width: 28%" title="Decor 28%"></div>
+<div class="bg-secondary-fixed-dim h-full" style="width: 14%" title="Photo 14%"></div>
+<div class="bg-tertiary-fixed-dim h-full" style="width: 12%" title="Entertainment 12%"></div>
+<div class="bg-surface-dim h-full" style="width: 8%" title="Contingency 8%"></div>
+</div>
+<!-- Category Percentages Grid -->
+<div class="grid grid-cols-2 gap-x-3 gap-y-1 mt-1 text-label-xs font-label-xs text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-primary"></span> Catering</span>
+<span class="font-semibold text-primary">38% (₹3.8L)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-secondary"></span> Decor &amp; Floral</span>
+<span class="font-semibold text-primary">28% (₹2.8L)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-secondary-fixed-dim"></span> Photography</span>
+<span class="font-semibold text-primary">14% (₹1.4L)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-tertiary-fixed-dim"></span> Music &amp; Sangeet</span>
+<span class="font-semibold text-primary">12% (₹1.2L)</span>
+</div>
+</div>
+</div>
+<!-- Utsav AI Recommendation Panel -->
+<div class="p-3.5 rounded-xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-lowest shadow-xs flex flex-col justify-between" style="border: 1px solid #C5A46D;">
+<div class="flex items-start gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-primary text-secondary-fixed flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-title-lg">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary font-bold">AI Concierge Market Alert</span>
+<span class="font-label-xs text-label-xs px-1.5 py-0.2 rounded bg-secondary-fixed text-primary font-bold">Save ₹18,000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+                  Marigold and jasmine wholesale rates in Ahmedabad peak on <strong>Nov 10</strong> for the festival rush. Lock in local florists before Friday to save approx <strong>₹18,000</strong>.
+                </p>
+</div>
+</div>
+<!-- Micro Action Buttons -->
+<div class="flex items-center gap-2 mt-3 pt-2" style="border-top: 1px dashed #DFD7C7;">
+<button class="flex-1 py-1.5 px-3 rounded-lg bg-primary text-surface-container-lowest hover:bg-on-surface font-label-xs text-label-xs font-semibold text-center transition-all shadow-2xs" onclick="applyAiRecommendation(this)">
+                Apply Recommendation
+              </button>
+<button class="py-1.5 px-3 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container font-label-xs text-label-xs font-semibold transition-all" onclick="openDrawer('ai-assistant')" style="border: 1px solid #E8E1D5;">
+                Discuss with AI
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- FLOATING QUICK-SWITCHER BAR -->
+<nav aria-label="Quick Switcher Tabs" class="flex items-center justify-center gap-1.5 p-1.5 bg-surface-container-lowest/90 backdrop-blur-md rounded-xl shadow-xs mx-auto max-w-lg w-full" style="border: 1px solid #E8E1D5;">
+<button class="flex items-center gap-1 px-3 py-1 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container text-label-xs font-label-xs font-medium transition-colors" onclick="openDrawer('budget')">
+<span class="material-symbols-outlined text-label-md">account_balance_wallet</span>
+<span>Budget Tab</span>
+</button>
+<span class="text-outline-variant">·</span>
+<button class="flex items-center gap-1 px-3 py-1 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container text-label-xs font-label-xs font-medium transition-colors" onclick="openDrawer('timeline')">
+<span class="material-symbols-outlined text-label-md">event_available</span>
+<span>Timeline Tab</span>
+</button>
+<span class="text-outline-variant">·</span>
+<button class="flex items-center gap-1 px-3 py-1 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container text-label-xs font-label-xs font-medium transition-colors" onclick="openDrawer('moodboard')">
+<span class="material-symbols-outlined text-label-md">image</span>
+<span>Moodboards</span>
+</button>
+<span class="text-outline-variant">·</span>
+<button class="flex items-center gap-1 px-3 py-1 rounded-lg bg-secondary/10 text-secondary-dark hover:bg-secondary/20 text-label-xs font-label-xs font-semibold transition-colors" onclick="openDrawer('ai-assistant')">
+<span class="material-symbols-outlined text-label-md">auto_awesome</span>
+<span>AI Assistant</span>
+</button>
+</nav>
+</section>
+</div>
+<!-- INTERACTIVE DRAWER/MODAL OVERLAY (No external navigation needed) -->
+<div class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-xs hidden items-center justify-end" id="action-drawer" onclick="closeDrawer(event)">
+<div class="w-full max-w-md h-full bg-surface-container-lowest shadow-2xl p-5 flex flex-col justify-between" onclick="event.stopPropagation()" style="border-left: 1px solid #E8E1D5;">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between pb-3" style="border-bottom: 1px solid #E8E1D5;">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-primary text-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-title-md" id="drawer-icon">auto_awesome</span>
+</div>
+<h2 class="font-title-lg text-title-lg text-primary font-serif font-bold" id="drawer-title">Workspace Atelier</h2>
+</div>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content Dynamic Area -->
+<div class="flex-1 overflow-y-auto py-4" id="drawer-content">
+<p class="text-body-md font-body-md text-on-surface-variant">Loading workspace modules...</p>
+</div>
+<!-- Drawer Bottom Actions -->
+<div class="pt-3 flex items-center justify-between" style="border-top: 1px solid #E8E1D5;">
+<button class="px-4 py-2 rounded-lg bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeDrawer()">
+          Close Drawer
+        </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-surface-container-lowest font-label-md text-label-md hover:bg-on-surface transition-colors" onclick="closeDrawer()">
+          Save Changes
+        </button>
+</div>
+</div>
+</div>
+<!-- INLINE CLIENT MICRO-INTERACTION LOGIC -->
+<script>
+    function toggleTask(checkbox) {
+      const label = checkbox.nextElementSibling.querySelector('label');
+      if (checkbox.checked) {
+        label.classList.add('line-through', 'opacity-60');
+      } else {
+        label.classList.remove('line-through', 'opacity-60');
+      }
+    }
+
+    function handleQuickAIAction() {
+      openDrawer('ai-assistant');
+    }
+
+    function findAiSavings() {
+      openDrawer('budget');
+    }
+
+    function applyAiRecommendation(btn) {
+      btn.innerText = 'Locking Rates...';
+      btn.classList.add('opacity-70');
+      setTimeout(() => {
+        btn.innerText = 'Rate Locked with Ahmedabad Floral Co.';
+        btn.classList.remove('bg-primary');
+        btn.classList.add('bg-secondary');
+      }, 700);
+    }
+
+    function openDrawer(type) {
+      const drawer = document.getElementById('action-drawer');
+      const title = document.getElementById('drawer-title');
+      const icon = document.getElementById('drawer-icon');
+      const content = document.getElementById('drawer-content');
+
+      if (!drawer) return;
+
+      if (type === 'budget') {
+        icon.innerText = 'account_balance_wallet';
+        title.innerText = 'Budget Studio & AI Optimization';
+        content.innerHTML = `
+          <div class="flex flex-col gap-3 font-sans">
+            <div class="p-3 rounded-lg bg-surface-container-low">
+              <span class="font-label-xs text-secondary-dark uppercase font-semibold">Total Event Spend</span>
+              <p class="font-serif text-headline-sm text-primary font-bold">₹7,32,000 / ₹10,00,000</p>
+              <p class="text-body-sm text-on-surface-variant mt-1">26.8% remaining contingency safely reserved.</p>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+              <span class="font-label-md text-primary font-semibold">AI Recommended Adjustments</span>
+              <div class="p-2.5 rounded bg-surface-container-lowest" style="border: 1px solid #E8E1D5;">
+                <p class="font-label-sm font-semibold text-primary">Shift 5% Contingency to Guest Welcome Hampers</p>
+                <p class="text-body-sm text-on-surface-variant mt-0.5">High guest delight impact with zero core risk.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (type === 'timeline') {
+        icon.innerText = 'checklist_rtl';
+        title.innerText = 'Celebration Timeline & Tasks';
+        content.innerHTML = `
+          <div class="flex flex-col gap-3">
+            <p class="text-body-md text-on-surface-variant">Here are all upcoming milestone checkpoints for Ananya & Kabir:</p>
+            <div class="flex flex-col gap-2">
+              <div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <span class="font-label-md text-primary">DJ Sound Equipment Setup</span>
+                <span class="text-label-xs text-secondary font-bold">Nov 12</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <span class="font-label-md text-primary">Mehndi Artist Arrival</span>
+                <span class="text-label-xs text-secondary font-bold">Nov 13</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
+                <span class="font-label-md text-primary">Baraat Procession Route Check</span>
+                <span class="text-label-xs text-secondary font-bold">Nov 14</span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (type === 'moodboard') {
+        icon.innerText = 'palette';
+        title.innerText = 'Moodboard Studio';
+        content.innerHTML = `
+          <div class="flex flex-col gap-3">
+            <span class="font-label-xs text-secondary-dark uppercase font-semibold">Current Theme Palette</span>
+            <div class="flex items-center gap-2">
+              <span class="w-10 h-10 rounded-lg bg-primary" title="Plum"></span>
+              <span class="w-10 h-10 rounded-lg bg-secondary" title="Champagne Gold"></span>
+              <span class="w-10 h-10 rounded-lg bg-tertiary-fixed-dim" title="Terracotta"></span>
+              <span class="w-10 h-10 rounded-lg bg-surface-container-high" title="Ivory Alabaster"></span>
+            </div>
+            <p class="text-body-md text-on-surface-variant mt-2">
+              Atmospheric sunset romance blending traditional Kathiyawadi brass accents with modern floral minimalism.
+            </p>
+          </div>
+        `;
+      } else {
+        icon.innerText = 'auto_awesome';
+        title.innerText = 'Utsav AI Private Concierge';
+        content.innerHTML = `
+          <div class="flex flex-col gap-3">
+            <div class="p-3 rounded-lg bg-surface-container-low">
+              <p class="font-label-sm font-semibold text-primary">Ask any celebration question:</p>
+              <p class="text-body-sm text-on-surface-variant mt-1">E.g., "Draft an SMS reminder for guests who haven't RSVP'd" or "Suggest 5 Rajasthani dessert options".</p>
+            </div>
+            <textarea placeholder="Type your instruction or prompt here..." class="w-full h-24 p-2.5 rounded-lg text-body-md bg-surface-container-lowest" style="border: 1px solid #E8E1D5;"></textarea>
+            <button class="py-2 rounded-lg bg-primary text-surface-container-lowest font-label-md font-semibold">Generate with Utsav AI</button>
+          </div>
+        `;
+      }
+
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    }
+
+    function closeDrawer(event) {
+      if (event && event.target !== event.currentTarget && event.type === 'click') return;
+      const drawer = document.getElementById('action-drawer');
+      if (drawer) {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+      }
+    }
+  </script>
+</div></main>
+<!-- =========================================================================
+     COMPACT CLEAN FOOTER
+========================================================================= -->
+<footer class="w-full bg-surface-container border-t border-outline-soft/80 py-8 px-4 sm:px-6">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center p-0.5">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<span class="font-serif text-sm font-bold text-primary">Utsav AI</span>
+<span class="text-outline-soft">|</span>
+<span>Every celebration, beautifully planned.</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#quick-plan">Start Plan</a>
+<a class="hover:text-primary transition-colors" href="#featured-events">Celebrations</a>
+<a class="hover:text-primary transition-colors" href="#benefits">AI Features</a>
+<button class="text-secondary-dark hover:underline" onclick="reopenWelcomeModal()">Reopen Welcome</button>
+</div>
+<div class="text-[11px] text-on-surface-variant/80">
+      © 2025 Utsav AI Technologies. All rights reserved.
+    </div>
+</div>
+</footer>
+<!-- =========================================================================
+     MODAL CONTROLS & PILL SELECTION SCRIPT
+========================================================================= -->
+<script>
+  function dismissWelcomeModal(targetSection) {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        sessionStorage.setItem('utsav_welcome_dismissed', 'true');
+        if (targetSection === 'plan') {
+          const el = document.getElementById('quick-plan');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } else if (targetSection === 'explore') {
+          const el = document.getElementById('featured-events');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }
+
+  function reopenWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+      }, 20);
+    }
+  }
+
+  // Handle ESC key to dismiss modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dismissWelcomeModal();
+    }
+  });
+
+  // Attach dismiss handler to the close button
+  document.getElementById('dismiss-modal-btn')?.addEventListener('click', () => {
+    dismissWelcomeModal();
+  });
+
+  // Event Type Pill Selection
+  document.querySelectorAll('#quick-type-selector .type-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#quick-type-selector .type-pill').forEach(p => {
+        p.classList.remove('bg-primary', 'text-ivory', 'border-primary');
+        p.classList.add('bg-surface-container', 'text-on-surface-variant', 'border-transparent');
+      });
+      btn.classList.add('bg-primary', 'text-ivory', 'border-primary');
+      btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'border-transparent');
+    });
+  });
+
+  function handleCreatePlan() {
+    const btnText = document.getElementById('plan-btn-text');
+    if (btnText) {
+      btnText.innerText = 'Structuring Celebration Blueprint...';
+      setTimeout(() => {
+        btnText.innerText = 'Blueprint Ready! Redirecting to Atelier...';
+      }, 1000);
+    }
+  }
+
+  // Check if previously dismissed in this session
+  window.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem('utsav_welcome_dismissed') === 'true') {
+      const modal = document.getElementById('welcome-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+  });
+</script>
+</body></html>

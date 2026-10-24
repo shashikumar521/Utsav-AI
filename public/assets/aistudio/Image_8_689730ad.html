@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Utsav AI — Every celebration, beautifully planned.</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#392538", // Deep Plum
+          "primary-dark": "#231123",
+          "secondary": "#C5A46D", // Champagne Gold
+          "secondary-dark": "#755a2a",
+          "terracotta": "#C97862", // Soft Terracotta
+          "ivory": "#FAF7F0", // Warm Ivory base
+          "surface": "#FAF7F0",
+          "surface-container": "#F4EFE6",
+          "surface-container-high": "#ECE6DA",
+          "surface-container-lowest": "#FFFFFF",
+          "on-surface": "#1C1C18",
+          "on-surface-variant": "#4C454A",
+          "outline-soft": "#E2DACF"
+        },
+        fontFamily: {
+          "serif": ["Playfair Display", "serif"],
+          "sans": ["Plus Jakarta Sans", "sans-serif"]
+        }
+      }
+    }
+  }
+</script><style>
+  @layer base {
+    body {
+      background-color: #FAF7F0;
+      color: #1C1C18;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+  }
+  /* Subtle floating keyframes */
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+  @keyframes petalFall {
+    0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.85; }
+    80% { opacity: 0.85; }
+    100% { transform: translate(60px, 120vh) rotate(360deg); opacity: 0; }
+  }
+  @keyframes lanternBob {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-16px) rotate(2deg); }
+  }
+  @keyframes shimmerPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.9; transform: scale(1.08); }
+  }
+  .animate-float { animation: gentleFloat 6s ease-in-out infinite; }
+  .animate-lantern { animation: lanternBob 7s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmerPulse 3.5s ease-in-out infinite; }
+  
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style></head><body class="antialiased min-h-screen relative selection:bg-secondary/30 selection:text-primary">
+<!-- =========================================================================
+     CINEMATIC ANIMATED CELEBRATION WELCOME EXPERIENCE MODAL / OVERLAY
+========================================================================= -->
+<aside aria-label="Celebration Welcome Experience" aria-modal="true" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 transition-all duration-700 ease-out bg-[#FAF7F0]/95 backdrop-blur-2xl" id="welcome-modal" role="dialog">
+<!-- Glowing Floating Lanterns Decor -->
+<div class="pointer-events-none absolute inset-0 overflow-hidden">
+<!-- Lantern 1 Left Top -->
+<div class="absolute top-[8%] left-[6%] sm:left-[10%] animate-lantern opacity-85">
+<div class="relative w-14 h-20 sm:w-16 sm:h-24 rounded-full bg-gradient-to-b from-[#C5A46D]/40 via-[#C97862]/60 to-[#392538]/70 shadow-[0_0_40px_16px_rgba(197,164,109,0.35)] flex items-center justify-center">
+<div class="w-4 h-6 rounded-full bg-secondary/80 blur-[2px] animate-pulse"></div>
+<div class="absolute -top-3 w-6 h-3 rounded-t-md bg-[#C5A46D]"></div>
+<div class="absolute -bottom-2 w-3 h-4 bg-terracotta/80 rounded-b"></div>
+</div>
+</div>
+<!-- Lantern 2 Right Top -->
+<div class="absolute top-[12%] right-[8%] sm:right-[12%] animate-lantern opacity-90" style="animation-delay: -2.5s;">
+<div class="relative w-16 h-24 sm:w-20 sm:h-28 rounded-full bg-gradient-to-b from-[#FAF7F0] via-[#C5A46D]/60 to-[#C97862]/80 shadow-[0_0_50px_20px_rgba(201,120,98,0.35)] flex items-center justify-center">
+<div class="w-5 h-8 rounded-full bg-amber-200/90 blur-[2px] animate-pulse"></div>
+<div class="absolute -top-3 w-8 h-3 rounded-t-md bg-[#392538]"></div>
+<div class="absolute -bottom-3 w-4 h-5 bg-secondary rounded-b"></div>
+</div>
+</div>
+<!-- Lantern 3 Bottom Left -->
+<div class="hidden sm:block absolute bottom-[14%] left-[14%] animate-lantern opacity-75" style="animation-delay: -4s;">
+<div class="relative w-12 h-16 rounded-full bg-gradient-to-b from-[#C5A46D]/50 to-[#392538]/80 shadow-[0_0_35px_12px_rgba(197,164,109,0.25)] flex items-center justify-center">
+<div class="w-3 h-5 rounded-full bg-yellow-100 blur-[1px]"></div>
+</div>
+</div>
+<!-- Floating Marigold Petals (CSS driven) -->
+<div class="absolute w-4 h-6 rounded-full bg-amber-500/80 blur-[0.5px] pointer-events-none" style="top: -10px; left: 22%; animation: petalFall 9s linear infinite; animation-delay: 0.2s;"></div>
+<div class="absolute w-3 h-5 rounded-full bg-[#C97862]/90 pointer-events-none" style="top: -10px; left: 45%; animation: petalFall 11s linear infinite; animation-delay: 2.1s;"></div>
+<div class="absolute w-4 h-5 rounded-full bg-amber-400/85 pointer-events-none" style="top: -10px; left: 78%; animation: petalFall 8.5s linear infinite; animation-delay: 1.4s;"></div>
+<div class="absolute w-3 h-4 rounded-full bg-amber-600/70 pointer-events-none" style="top: -10px; left: 63%; animation: petalFall 10s linear infinite; animation-delay: 4s;"></div>
+<!-- Gold Shimmer Particles -->
+<div class="absolute top-1/4 left-1/3 w-3 h-3 rounded-full bg-[#C5A46D] blur-[1px] animate-shimmer"></div>
+<div class="absolute top-2/3 right-1/4 w-2.5 h-2.5 rounded-full bg-[#C5A46D] blur-[1px] animate-shimmer" style="animation-delay: 1.8s;"></div>
+<div class="absolute top-1/2 left-1/5 w-2 h-2 rounded-full bg-amber-300 blur-[0.5px] animate-shimmer" style="animation-delay: 0.9s;"></div>
+</div>
+<!-- Modal Center Stage Card -->
+<div class="relative w-full max-w-xl mx-auto rounded-3xl bg-surface-container-lowest/90 border border-secondary/30 shadow-[0_24px_70px_-15px_rgba(57,37,56,0.22)] p-7 sm:p-10 text-center flex flex-col items-center gap-6 z-10 transition-transform duration-500">
+<!-- Dismiss Skip Button -->
+<button aria-label="Skip intro to celebration studio" class="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors group" id="dismiss-modal-btn">
+<span class="material-symbols-outlined text-xl group-hover:rotate-90 transition-transform duration-300">close</span>
+</button>
+<!-- Brand Emblem -->
+<div class="relative flex flex-col items-center">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary flex items-center justify-center shadow-lg ring-4 ring-secondary/25 p-2">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<div class="mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-secondary-dark font-sans text-xs tracking-widest uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-terracotta animate-ping"></span>
+        Welcome to Utsav AI
+      </div>
+</div>
+<!-- Tagline & Serene Typography -->
+<div class="flex flex-col gap-2">
+<h2 class="font-serif text-3xl sm:text-4xl text-primary font-medium tracking-tight leading-tight">
+        Every celebration, <br class="hidden sm:inline"/>
+<span class="italic text-secondary-dark">beautifully planned.</span>
+</h2>
+<p class="font-serif italic text-lg sm:text-xl text-terracotta tracking-wide font-normal">
+        Dream it. Plan it. Celebrate it.
+      </p>
+<p class="font-sans text-sm sm:text-base text-on-surface-variant max-w-md mx-auto mt-1 leading-relaxed">
+        Step into an atelier where heartfelt traditions, exquisite aesthetics, and intelligent logistics align seamlessly for your milestone moments.
+      </p>
+</div>
+<!-- Dual Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-1">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-primary text-ivory hover:bg-primary-dark font-sans text-sm font-semibold tracking-wide shadow-md hover:shadow-lg transition-all duration-300 ring-1 ring-secondary/30" onclick="dismissWelcomeModal('plan')">
+<span>Plan My Celebration</span>
+<span class="material-symbols-outlined text-base text-secondary">auto_awesome</span>
+</button>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-surface-container text-primary hover:bg-surface-container-high font-sans text-sm font-semibold tracking-wide transition-colors" onclick="dismissWelcomeModal('explore')">
+<span>Explore Utsav AI</span>
+<span class="material-symbols-outlined text-base text-secondary-dark">arrow_forward</span>
+</button>
+</div>
+<!-- Subtle Quick Skip Link -->
+<button class="text-xs font-sans text-on-surface-variant/80 hover:text-primary underline underline-offset-4 decoration-secondary/50" onclick="dismissWelcomeModal()">
+      Skip directly to celebration studio (Esc)
+    </button>
+</div>
+</aside>
+<!-- =========================================================================
+     COMPACT EDITORIAL SITE HEADER
+========================================================================= -->
+<header class="sticky top-0 z-40 w-full bg-[#FAF7F0]/90 backdrop-blur-md border-b border-outline-soft/80 shadow-[0_4px_20px_-4px_rgba(57,37,56,0.04)]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+<!-- Brand -->
+<a class="flex items-center gap-3 focus:outline-none" href="#">
+<div class="w-9 h-9 rounded-lg bg-primary p-1 flex items-center justify-center shadow-sm">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<div class="flex flex-col leading-tight">
+<span class="font-serif text-xl tracking-tight text-primary font-bold">Utsav AI</span>
+<span class="font-sans text-[10px] tracking-widest uppercase text-secondary-dark font-medium">Celebration Studio</span>
+</div>
+</a>
+<!-- Compact Navigation Links -->
+<nav class="hidden md:flex items-center gap-1 font-sans text-xs lg:text-sm font-medium text-on-surface-variant">
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#quick-plan">Quick Plan</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#featured-events">Celebrations</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#how-it-works">Methodology</a>
+<a class="px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-primary transition-colors" href="#benefits">AI Benefits</a>
+</nav>
+<!-- Header CTA & Quick Controls -->
+<div class="flex items-center gap-2.5">
+<button class="p-2 rounded-lg text-secondary-dark hover:text-primary hover:bg-surface-container transition-colors inline-flex items-center gap-1 text-xs font-semibold" onclick="reopenWelcomeModal()" title="Replay celebration welcome experience">
+<span class="material-symbols-outlined text-base">magic_button</span>
+<span class="hidden sm:inline">Intro</span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-ivory text-xs sm:text-sm font-semibold hover:bg-primary-dark transition shadow-sm" href="#quick-plan">
+<span>Start Planning</span>
+<span class="material-symbols-outlined text-sm text-secondary">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- =========================================================================
+       SECTION A: COMPACT HERO
+  ========================================================================= -->
+<section class="relative w-full px-4 sm:px-6 pt-8 pb-12 overflow-hidden bg-gradient-to-b from-surface via-[#FAF7F0] to-surface-container/40">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left Column: Compact Hero Copy -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-surface-container border border-secondary/30 text-secondary-dark text-xs font-semibold tracking-wide">
+<span class="material-symbols-outlined text-sm text-terracotta">celebration</span>
+<span>Bespoke AI Event Architecture</span>
+</div>
+<!-- Headline -->
+<h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary font-medium tracking-tight leading-[1.18]">
+          Your next unforgettable celebration <span class="italic text-secondary-dark font-normal">starts here.</span>
+</h1>
+<!-- Subtext -->
+<p class="font-sans text-sm sm:text-base text-on-surface-variant max-w-xl leading-relaxed">
+          Plan weddings, birthdays, festivals, corporate events, and intimate gatherings with your personal AI planner. Harmonizing regional nuance, meticulous budgets, and joyous aesthetics in minutes.
+        </p>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<a class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-ivory font-sans text-sm font-semibold hover:bg-primary-dark shadow-sm hover:shadow transition" href="#quick-plan">
+<span>Start Planning</span>
+<span class="material-symbols-outlined text-base text-secondary">auto_awesome</span>
+</a>
+<a class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container text-primary font-sans text-sm font-semibold hover:bg-surface-container-high transition" href="#featured-events">
+<span>Explore Celebrations</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+<!-- Micro Social Proof Strip -->
+<div class="flex items-center gap-6 pt-3 border-t border-outline-soft/80 text-xs text-on-surface-variant font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary-dark text-base">verified</span>
+<span>98.4% Budget Precision</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary-dark text-base">schedule</span>
+<span>Plans generated under 60 seconds</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Refined Celebration Visual Preview -->
+<div class="lg:col-span-5 relative">
+<div class="relative rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-soft shadow-[0_16px_40px_-8px_rgba(57,37,56,0.12)]">
+<div class="relative h-60 sm:h-72 w-full overflow-hidden">
+<img alt="Bespoke luxury palace evening celebration with glowing lanterns and florals" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7Fh-7HBAy02yqxkp4RBPchAabQtrouLHmHybjkFGyRs3cJ_R1AlyHQ07XFly994n3m6uXPO6DuftsykTQydh1IX_qF1rvn6s7txorWLv3UkjbLckWOuCmeyMXJ9LDV_-FIDkSjmhNO-7KgVrE0wnPD--Hfr8B4rswUdzMXTQ01EIUkZ6qf1Cxhji5UaWAbN2vqgIGXaLlJvVW3n4PG3jAtcbgZnwWQG_Bt11UeJQjTGNxfsIFzchA8A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent flex flex-col justify-end p-4 text-ivory">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-secondary">Blueprint In Progress</span>
+<h2 class="font-serif text-lg sm:text-xl font-medium leading-snug">The Amber Sunset Pavilion Soirée</h2>
+<p class="text-xs text-ivory/85 mt-0.5">140 guests • Heritage Courtyard • ₹8.5L Planned</p>
+</div>
+</div>
+<!-- Compact Live Stats Strip -->
+<div class="p-3.5 bg-surface-container-lowest grid grid-cols-3 gap-2 text-center text-xs border-t border-outline-soft">
+<div class="flex flex-col">
+<span class="font-serif text-sm font-bold text-primary">₹8.5L</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Optimized Cost</span>
+</div>
+<div class="flex flex-col border-x border-outline-soft">
+<span class="font-serif text-sm font-bold text-secondary-dark">32 Tasks</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Timeline Set</span>
+</div>
+<div class="flex flex-col">
+<span class="font-serif text-sm font-bold text-terracotta">Ready</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Mood Palette</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECTION B: QUICK EVENT CREATION PANEL
+  ========================================================================= -->
+<section class="w-full px-4 sm:px-6 py-10 bg-surface-container/50 border-y border-outline-soft/80" id="quick-plan">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-6">
+<span class="font-sans text-xs uppercase tracking-widest text-secondary-dark font-bold">Express Dossier</span>
+<h2 class="font-serif text-2xl sm:text-3xl text-primary font-medium tracking-tight">Create your celebration in minutes</h2>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-7 border border-outline-soft shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Column 1: Event Type & Logistics -->
+<div class="flex flex-col gap-4">
+<!-- Event Type Pills -->
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-secondary-dark mb-2">1. Select Celebration Type</label>
+<div class="flex flex-wrap gap-2" id="quick-type-selector">
+<button class="type-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary text-ivory border border-primary transition" type="button">
+                  💍 Wedding
+                </button>
+<button class="type-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-container text-on-surface-variant hover:text-primary border border-transparent transition" type="button">
+                  🎂 Birthday
+                </button>
+<button class="type-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-container text-on-surface-variant hover:text-primary border border-transparent transition" type="button">
+                  🪔 Festival &amp; Puja
+                </button>
+<button class="type-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-container text-on-surface-variant hover:text-primary border border-transparent transition" type="button">
+                  🥂 Corporate Gala
+                </button>
+<button class="type-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-container text-on-surface-variant hover:text-primary border border-transparent transition" type="button">
+                  🌿 Intimate Dinner
+                </button>
+</div>
+</div>
+<!-- Date & Venue -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">Event Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-base text-secondary-dark">calendar_today</span>
+<input class="w-full pl-9 pr-3 py-2 text-xs font-semibold rounded-lg bg-surface-container border-0 focus:ring-1 focus:ring-secondary text-primary" type="text" value="Nov 18, 2025"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-on-surface-variant mb-1">City or Venue</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-base text-secondary-dark">location_on</span>
+<input class="w-full pl-9 pr-3 py-2 text-xs font-semibold rounded-lg bg-surface-container border-0 focus:ring-1 focus:ring-secondary text-primary" type="text" value="Jaipur / Delhi NCR"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Budget, Guests & Submit -->
+<div class="flex flex-col justify-between gap-4">
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-secondary-dark mb-2">2. Scale &amp; Budget Parameters</label>
+<!-- Guest Count Slider -->
+<div class="bg-surface-container p-3 rounded-xl mb-3">
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-semibold text-on-surface">Guest Scale</span>
+<span class="font-serif font-bold text-primary text-sm" id="guest-count-val">120 Guests</span>
+</div>
+<input class="w-full h-1.5 bg-outline-soft rounded-lg appearance-none cursor-pointer accent-primary" id="guest-slider" max="600" min="10" oninput="document.getElementById('guest-count-val').innerText = this.value + ' Guests'" type="range" value="120"/>
+<div class="flex justify-between text-[10px] text-on-surface-variant mt-1">
+<span>Intimate (10)</span>
+<span>Grand (600+)</span>
+</div>
+</div>
+<!-- Estimated Budget Field -->
+<div class="grid grid-cols-2 gap-2">
+<div>
+<label class="block text-[11px] font-semibold text-on-surface-variant mb-1">Estimated Budget (INR)</label>
+<input class="w-full px-3 py-2 text-xs font-semibold rounded-lg bg-surface-container border-0 focus:ring-1 focus:ring-secondary text-primary" type="text" value="₹ 6,00,000"/>
+</div>
+<div>
+<label class="block text-[11px] font-semibold text-on-surface-variant mb-1">Atmosphere Style</label>
+<select class="w-full px-3 py-2 text-xs font-medium rounded-lg bg-surface-container border-0 focus:ring-1 focus:ring-secondary text-primary">
+<option>Heritage &amp; Regal</option>
+<option>Modern Minimalist</option>
+<option>Rustic Tuscan Garden</option>
+<option>Vibrant Bohemian</option>
+</select>
+</div>
+</div>
+</div>
+<!-- CTA Submit -->
+<button class="w-full py-3 px-4 rounded-xl bg-primary text-ivory hover:bg-primary-dark font-sans text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 shadow-sm transition" onclick="handleCreatePlan()" type="button">
+<span class="material-symbols-outlined text-secondary text-base">auto_awesome</span>
+<span id="plan-btn-text">Create My Plan with Utsav AI</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECTION C: FEATURED CELEBRATIONS (4 COMPACT CARDS)
+  ========================================================================= -->
+<section class="w-full px-4 sm:px-6 py-12 bg-surface" id="featured-events">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-2">
+<div>
+<span class="font-sans text-xs uppercase tracking-widest text-secondary-dark font-bold">Curated Templates</span>
+<h2 class="font-serif text-2xl sm:text-3xl text-primary font-medium tracking-tight">Featured Celebrations</h2>
+</div>
+<a class="text-xs font-semibold text-secondary-dark hover:text-primary inline-flex items-center gap-1 transition" href="#quick-plan">
+<span>See all archetypes</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</a>
+</div>
+<!-- 4 Compact Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+<!-- Card 1: Weddings -->
+<article class="group rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-soft hover:shadow-md transition flex flex-col">
+<div class="relative h-44 overflow-hidden">
+<img alt="Regal palace wedding courtyard setup with glowing lamps" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsf9_GirCBCaElQba1Z3y6YPwJfaCcP3hsvcxDL-q5O78RZ2fMm14_RcpvoWV28vi49QRLDEn_tCubxaLrEErRKDzT8N5VpjU2Ec5K1XKzUUjXgMCOFGnYc20teG5JChtvoj_pWCBkx8I8iFTpKlj3-M04uGL17ufWvdrtQB-_sayNCikFiRepnTu4TbjpXCMNWnipYoZ6uiAna7efxUjgsolUaMOmvhBS3pt-hhNCHtZ7CciI7Gm8lg"/>
+<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-primary/90 text-ivory text-[10px] font-semibold tracking-wide uppercase">
+              Weddings
+            </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3">
+<div>
+<h3 class="font-serif text-base font-semibold text-primary group-hover:text-secondary-dark transition-colors">Palace &amp; Destination Weddings</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-1 line-clamp-2">Multi-day itineraries, traditional rituals, acoustic mandaps, and bespoke hospitality dossiers.</p>
+</div>
+<div class="pt-2 border-t border-outline-soft flex items-center justify-between text-xs font-semibold text-secondary-dark">
+<span>100 – 400 Guests</span>
+<a class="hover:text-primary inline-flex items-center gap-0.5" href="#quick-plan">Plan →</a>
+</div>
+</div>
+</article>
+<!-- Card 2: Birthdays -->
+<article class="group rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-soft hover:shadow-md transition flex flex-col">
+<div class="relative h-44 overflow-hidden">
+<img alt="Sun-drenched rooftop terrace birthday celebration setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsbrjjAiDMHcnx4IkprCYxyJ1RfOyHTfbB5E4A91Xf4wjWukjj3-ZvBx9OE5gezJnwXj9gfJqPE--kmLc472v4JsKuDO0nP2VlP_54AZ-VE864Dsssl9qKRhnWQFzprgcv3Tg4acoSAfuekkzZ8oTf_JEMXSawSRsCnSG4-hybMO587JruEZ5oG-sN3kUwJIx7mEXZx5irrBxS6BDNAODj5hng8UhyDXhwLSIDycEOozjR33ZNwGg8NA"/>
+<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-terracotta/90 text-ivory text-[10px] font-semibold tracking-wide uppercase">
+              Birthdays
+            </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3">
+<div>
+<h3 class="font-serif text-base font-semibold text-primary group-hover:text-secondary-dark transition-colors">Milestone Birthdays</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-1 line-clamp-2">Intimate 30th, 40th &amp; 50th evenings, artisanal cocktail curations, live acoustic sets, and memories.</p>
+</div>
+<div class="pt-2 border-t border-outline-soft flex items-center justify-between text-xs font-semibold text-secondary-dark">
+<span>25 – 80 Guests</span>
+<a class="hover:text-primary inline-flex items-center gap-0.5" href="#quick-plan">Plan →</a>
+</div>
+</div>
+</article>
+<!-- Card 3: Festivals -->
+<article class="group rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-soft hover:shadow-md transition flex flex-col">
+<div class="relative h-44 overflow-hidden">
+<img alt="Festive decor with fragrant yellow marigolds and brass vessels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0WHcqfREpMbgsgzV4Tx_H_Uhd8Psm3FPYTlhUx3wHT1Dvl5gaSygYAPniO8IES6DlM0gfynR0XENtFE6STWho2NnNsfrzcTJPWxDbxYEeHPT5w5wAjTVRcEPmPWdSGzkgdmUf6FCQKZ4gSXUFlME_wP2H3zroKz_iuI7ST4zyqeRpYGsg2Fyaddk76ov4OVMexgrILm_565IOhH0Qnj-vqayq7vQ8Mp6gXVMVPkjRLyTq5gFyt7-zjA"/>
+<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-amber-600/90 text-ivory text-[10px] font-semibold tracking-wide uppercase">
+              Festivals
+            </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3">
+<div>
+<h3 class="font-serif text-base font-semibold text-primary group-hover:text-secondary-dark transition-colors">Festivals &amp; Cultural Pujas</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-1 line-clamp-2">Diwali galas, family satyanarayan pujas, heirloom brass accents, and authentic catering spreads.</p>
+</div>
+<div class="pt-2 border-t border-outline-soft flex items-center justify-between text-xs font-semibold text-secondary-dark">
+<span>50 – 200 Guests</span>
+<a class="hover:text-primary inline-flex items-center gap-0.5" href="#quick-plan">Plan →</a>
+</div>
+</div>
+</article>
+<!-- Card 4: Corporate Events -->
+<article class="group rounded-2xl overflow-hidden bg-surface-container-lowest border border-outline-soft hover:shadow-md transition flex flex-col">
+<div class="relative h-44 overflow-hidden">
+<img alt="Black-tie corporate gala champagne coupe banquet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBonQ6IcVtat2UkzJdh-83o3_nCnRtXC7b0XB2ZcP5CVVsnXvmeM-nhCmYeWhBxNRHeVxcJUur1eBMj288ISWm9W-xM3LAJVC616MaoIJcWbrCveCQyC8URhTYO3V_12SQimZiRCfDnv6XHuTrf8X4SOZKoS4TWx2O16Zsgq0Gl8G4jHhhlSIWfD29nY_ncdtgOqsc1LBFIagIaf_K6SxP003C5za2WXCCTF8lWpwvN2oRRGkNlpC0GwQ"/>
+<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-primary-dark/90 text-ivory text-[10px] font-semibold tracking-wide uppercase">
+              Corporate
+            </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3">
+<div>
+<h3 class="font-serif text-base font-semibold text-primary group-hover:text-secondary-dark transition-colors">Corporate Galas &amp; Retreats</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-1 line-clamp-2">Annual award nights, executive banquets, AV scheduling, speaker runs, and signature dining.</p>
+</div>
+<div class="pt-2 border-t border-outline-soft flex items-center justify-between text-xs font-semibold text-secondary-dark">
+<span>80 – 350 Guests</span>
+<a class="hover:text-primary inline-flex items-center gap-0.5" href="#quick-plan">Plan →</a>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECTION D: HOW UTSAV AI WORKS (3-STEP HORIZONTAL WORKFLOW)
+  ========================================================================= -->
+<section class="w-full px-4 sm:px-6 py-12 bg-surface-container/40 border-t border-outline-soft/80" id="how-it-works">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-9">
+<span class="font-sans text-xs uppercase tracking-widest text-secondary-dark font-bold">The Methodology</span>
+<h2 class="font-serif text-2xl sm:text-3xl text-primary font-medium tracking-tight">How Utsav AI Works</h2>
+<p class="font-sans text-xs sm:text-sm text-on-surface-variant mt-1">From raw inspiration to smooth day-of execution in three graceful steps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+<!-- Step 1 -->
+<div class="relative bg-surface-container-lowest p-6 rounded-2xl border border-outline-soft shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+</div>
+<span class="font-serif text-3xl font-bold text-outline-soft select-none">01</span>
+</div>
+<h3 class="font-serif text-base font-semibold text-primary">Share your celebration idea</h3>
+<p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+            Type, speak, or select your preferences. Describe the guest vibe, must-have customs, dietary needs, or visual aspirations.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="relative bg-surface-container-lowest p-6 rounded-2xl border border-secondary/40 shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-secondary/20 text-secondary-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">psychology</span>
+</div>
+<span class="font-serif text-3xl font-bold text-secondary/30 select-none">02</span>
+</div>
+<h3 class="font-serif text-base font-semibold text-primary">Let AI organize your event plan</h3>
+<p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+            In seconds, our models compile structured cost breakdowns in INR, curated decor palettes, vendor briefs, and milestone checklists.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="relative bg-surface-container-lowest p-6 rounded-2xl border border-outline-soft shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-xl bg-terracotta/15 text-terracotta flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">celebration</span>
+</div>
+<span class="font-serif text-3xl font-bold text-outline-soft select-none">03</span>
+</div>
+<h3 class="font-serif text-base font-semibold text-primary">Customize details and celebrate</h3>
+<p class="font-sans text-xs text-on-surface-variant leading-relaxed">
+            Fine-tune line items, share PDF blueprints with family, track RSVPs via WhatsApp, and step into your event without logistical anxiety.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECTION E: AI PLANNING BENEFITS (COMPACT 6-ITEM GRID)
+  ========================================================================= -->
+<section class="w-full px-4 sm:px-6 py-12 bg-surface" id="benefits">
+<div class="max-w-7xl mx-auto">
+<div class="max-w-2xl mb-8">
+<span class="font-sans text-xs uppercase tracking-widest text-secondary-dark font-bold">Comprehensive Capabilities</span>
+<h2 class="font-serif text-2xl sm:text-3xl text-primary font-medium tracking-tight">AI Planning Benefits</h2>
+<p class="font-sans text-xs sm:text-sm text-on-surface-variant mt-1">Everything an experienced planner provides, supercharged for clarity and speed.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Benefit 1 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">account_balance_wallet</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">Smart budget planning</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Dynamic rupee allocation matrix preventing unexpected vendor creep and protecting buffers.</p>
+</div>
+</div>
+<!-- Benefit 2 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">view_timeline</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">Personalized timelines</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Minute-by-minute day-of schedules with reverse-engineered deadlines for rehearsals and decor setup.</p>
+</div>
+</div>
+<!-- Benefit 3 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">storefront</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">Venue &amp; vendor discovery</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Instantly find verified caterers, decorators, mehendi artists, and acoustic musicians tailored to scale.</p>
+</div>
+</div>
+<!-- Benefit 4 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">groups</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">Guest planning</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Effortless WhatsApp RSVPs, dietary requirement sorting, and table choreography with family groups.</p>
+</div>
+</div>
+<!-- Benefit 5 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">palette</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">Moodboard creation</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Harmonious color schemes (#392538, #C5A46D, #C97862), floral moodboards, and printable decor guides.</p>
+</div>
+</div>
+<!-- Benefit 6 -->
+<div class="p-4 rounded-xl bg-surface-container border border-outline-soft/80 hover:bg-surface-container-high transition flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-lowest text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-secondary-dark">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-serif text-sm font-semibold text-primary">AI recommendations</h3>
+<p class="font-sans text-xs text-on-surface-variant mt-0.5 leading-snug">Proactive ideas for authentic regional touches, weather contingency tips, and guest gift concepts.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+       SECTION F: FINAL CALL TO ACTION (DEEP-PLUM BANNER)
+  ========================================================================= -->
+<section class="w-full px-4 sm:px-6 py-10 bg-surface">
+<div class="max-w-7xl mx-auto rounded-3xl bg-primary text-ivory p-8 sm:p-12 relative overflow-hidden text-center flex flex-col items-center gap-4 shadow-xl">
+<!-- Gold Shimmer Background Elements -->
+<div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-terracotta/25 blur-3xl pointer-events-none"></div>
+<span class="px-3.5 py-1 rounded-full bg-surface-container-lowest/10 text-secondary text-xs uppercase tracking-widest font-semibold border border-secondary/20">
+        Start Without Friction
+      </span>
+<h2 class="font-serif text-2xl sm:text-4xl text-ivory font-medium tracking-tight max-w-2xl leading-snug">
+        Your celebration deserves <br class="hidden sm:inline"/>
+<span class="italic text-secondary">something extraordinary.</span>
+</h2>
+<p class="font-sans text-xs sm:text-sm text-ivory/80 max-w-lg leading-relaxed">
+        Join over 4,200 hosts who planned memorable weddings, birthdays, and soirées with complete peace of mind.
+      </p>
+<div class="pt-2 z-10">
+<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-secondary text-primary font-sans text-sm font-bold tracking-wide hover:bg-secondary/90 shadow-md transition-all" href="#quick-plan">
+<span>Start Planning with Utsav AI</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+<span class="text-[11px] text-ivory/60 mt-1">No credit card required • Instant custom blueprint</span>
+</div>
+</section>
+</main>
+<!-- =========================================================================
+     COMPACT CLEAN FOOTER
+========================================================================= -->
+<footer class="w-full bg-surface-container border-t border-outline-soft/80 py-8 px-4 sm:px-6">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary flex items-center justify-center p-0.5">
+        https://lh3.googleusercontent.com/aida/AEtjO1V-0t1YZ1Go2lk91VbVNKAu6G8YPzRBC-vHCflkFPUgVMKVOc-uiYX6w_EMZGYpOVc7DEiSszL_rl8DSMCcrU6nQICeGPJi32yDAtztjrKiA-Mp2BQb0eWO-Vl68CgRg_OmKg9kyJI6DCzlTn_nFovLYKPYMyqtztK73EsawD6I18mRpD6KQMQlBaC4WnkQYiyJFqxWdw5fzajjqNnNtihFcPHxHemvkbpTghAx2D_nAbQaLXji0X2KCBDV
+      </div>
+<span class="font-serif text-sm font-bold text-primary">Utsav AI</span>
+<span class="text-outline-soft">|</span>
+<span>Every celebration, beautifully planned.</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#quick-plan">Start Plan</a>
+<a class="hover:text-primary transition-colors" href="#featured-events">Celebrations</a>
+<a class="hover:text-primary transition-colors" href="#benefits">AI Features</a>
+<button class="text-secondary-dark hover:underline" onclick="reopenWelcomeModal()">Reopen Welcome</button>
+</div>
+<div class="text-[11px] text-on-surface-variant/80">
+      © 2025 Utsav AI Technologies. All rights reserved.
+    </div>
+</div>
+</footer>
+<!-- =========================================================================
+     MODAL CONTROLS & PILL SELECTION SCRIPT
+========================================================================= -->
+<script>
+  function dismissWelcomeModal(targetSection) {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        sessionStorage.setItem('utsav_welcome_dismissed', 'true');
+        if (targetSection === 'plan') {
+          const el = document.getElementById('quick-plan');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } else if (targetSection === 'explore') {
+          const el = document.getElementById('featured-events');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }
+
+  function reopenWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+      }, 20);
+    }
+  }
+
+  // Handle ESC key to dismiss modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dismissWelcomeModal();
+    }
+  });
+
+  // Attach dismiss handler to the close button
+  document.getElementById('dismiss-modal-btn')?.addEventListener('click', () => {
+    dismissWelcomeModal();
+  });
+
+  // Event Type Pill Selection
+  document.querySelectorAll('#quick-type-selector .type-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#quick-type-selector .type-pill').forEach(p => {
+        p.classList.remove('bg-primary', 'text-ivory', 'border-primary');
+        p.classList.add('bg-surface-container', 'text-on-surface-variant', 'border-transparent');
+      });
+      btn.classList.add('bg-primary', 'text-ivory', 'border-primary');
+      btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'border-transparent');
+    });
+  });
+
+  function handleCreatePlan() {
+    const btnText = document.getElementById('plan-btn-text');
+    if (btnText) {
+      btnText.innerText = 'Structuring Celebration Blueprint...';
+      setTimeout(() => {
+        btnText.innerText = 'Blueprint Ready! Redirecting to Atelier...';
+      }, 1000);
+    }
+  }
+
+  // Check if previously dismissed in this session
+  window.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem('utsav_welcome_dismissed') === 'true') {
+      const modal = document.getElementById('welcome-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+  });
+</script>
+</body></html>

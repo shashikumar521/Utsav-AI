@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #392538;
+  --color-primary-dark: #231123;
+  --color-secondary: #C5A46D;
+  --color-secondary-dark: #755a2a;
+  --color-terracotta: #C97862;
+  --color-ivory: #FAF7F0;
+  --color-ink: #252321;
+  
+  --color-surface: #FAF7F0;
+  --color-surface-container: #F4EFE6;
+  --color-surface-container-high: #ECE6DA;
+  --color-surface-container-low: #F6F3EC;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-outline-soft: #E8E1D5;
+  --color-outline-subtle: #DFD7C7;
+  
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #FAF7F0;
+    color: #1C1C18;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Refined celebration animation keyframes */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+@keyframes petalFall {
+  0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.9; }
+  85% { opacity: 0.9; }
+  100% { transform: translate(60px, 115vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes lanternBob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+@keyframes shimmerPulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.95); }
+  50% { opacity: 0.95; transform: scale(1.08); }
+}
+
+.animate-float { animation: gentleFloat 6s ease-in-out infinite; }
+.animate-lantern { animation: lanternBob 7s ease-in-out infinite; }
+.animate-shimmer { animation: shimmerPulse 3.5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

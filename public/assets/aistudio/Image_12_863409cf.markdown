@@ -1,0 +1,246 @@
+---
+name: Editorial Celebration Intelligence
+colors:
+  surface: '#fcf9f2'
+  surface-dim: '#dcdad3'
+  surface-bright: '#fcf9f2'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f6f3ec'
+  surface-container: '#f0eee7'
+  surface-container-high: '#ebe8e1'
+  surface-container-highest: '#e5e2db'
+  on-surface: '#1c1c18'
+  on-surface-variant: '#4c454a'
+  inverse-surface: '#31312c'
+  inverse-on-surface: '#f3f0ea'
+  outline: '#7e747b'
+  outline-variant: '#cfc3ca'
+  surface-tint: '#6f576c'
+  primary: '#231123'
+  on-primary: '#ffffff'
+  primary-container: '#392538'
+  on-primary-container: '#a68ba2'
+  inverse-primary: '#dcbed7'
+  secondary: '#755a2a'
+  on-secondary: '#ffffff'
+  secondary-container: '#fcd89c'
+  on-secondary-container: '#775d2d'
+  tertiary: '#340700'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#511a0b'
+  on-tertiary-container: '#d07e67'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#f9d9f3'
+  primary-fixed-dim: '#dcbed7'
+  on-primary-fixed: '#281527'
+  on-primary-fixed-variant: '#564054'
+  secondary-fixed: '#ffdea9'
+  secondary-fixed-dim: '#e5c188'
+  on-secondary-fixed: '#271900'
+  on-secondary-fixed-variant: '#5b4315'
+  tertiary-fixed: '#ffdbd1'
+  tertiary-fixed-dim: '#ffb5a1'
+  on-tertiary-fixed: '#3b0a01'
+  on-tertiary-fixed-variant: '#733422'
+  background: '#fcf9f2'
+  on-background: '#1c1c18'
+  surface-variant: '#e5e2db'
+typography:
+  display-hero:
+    fontFamily: Playfair Display
+    fontSize: 56px
+    fontWeight: '600'
+    lineHeight: 64px
+    letterSpacing: -0.02em
+  display-hero-mobile:
+    fontFamily: Playfair Display
+    fontSize: 36px
+    fontWeight: '600'
+    lineHeight: 44px
+    letterSpacing: -0.01em
+  headline-lg:
+    fontFamily: Playfair Display
+    fontSize: 40px
+    fontWeight: '500'
+    lineHeight: 48px
+    letterSpacing: -0.015em
+  headline-lg-mobile:
+    fontFamily: Playfair Display
+    fontSize: 28px
+    fontWeight: '500'
+    lineHeight: 36px
+    letterSpacing: 0em
+  headline-md:
+    fontFamily: Playfair Display
+    fontSize: 28px
+    fontWeight: '500'
+    lineHeight: 36px
+    letterSpacing: 0em
+  headline-sm:
+    fontFamily: Playfair Display
+    fontSize: 22px
+    fontWeight: '600'
+    lineHeight: 28px
+    letterSpacing: 0.005em
+  title-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 26px
+    letterSpacing: -0.01em
+  title-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '600'
+    lineHeight: 24px
+    letterSpacing: 0em
+  body-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 26px
+    letterSpacing: 0.01em
+  body-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 22px
+    letterSpacing: 0.01em
+  body-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 18px
+    letterSpacing: 0.015em
+  label-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '600'
+    lineHeight: 20px
+    letterSpacing: 0.02em
+  label-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '600'
+    lineHeight: 16px
+    letterSpacing: 0.04em
+  label-xs:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 10px
+    fontWeight: '700'
+    lineHeight: 14px
+    letterSpacing: 0.08em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  gutter: 1.5rem
+  gutter-mobile: 1rem
+  margin: 3rem
+  margin-tablet: 2rem
+  margin-mobile: 1.25rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2.5rem
+  space-2xl: 4rem
+---
+
+## Brand & Style
+
+This design system embodies "Editorial Celebration Intelligence"—an aesthetic synergy of high-end wedding editorial spreads, bespoke luxury hospitality collateral, and high-velocity workflow architecture. The experience targets modern event hosts, master planners, creative directors, and couples who require both exacting logistical precision and exquisite aesthetic taste. 
+
+The emotional signature is poised, romantic, and reassuringly authoritative:
+- **Atmospheric Warmth:** Rooted in tactile, physical paper textures, warm alabaster foundations, and bespoke typography rather than sterile tech-minimalism.
+- **Disciplined Editorial Layout:** Characterized by deliberate asymmetric pacing, high typographic contrast, hairline frames, and museum-grade whitespace.
+- **Invisible Intelligence:** AI interactions avoid cold robotic metaphors, manifesting instead as an intuitive private concierge characterized by quiet recommendations, gold-leaf shimmer states, and refined four-point sparkle celebration emblems.
+
+## Colors
+
+The palette draws inspiration from wedding invitations printed on deckled cotton paper, aged champagne wax seals, pressed garden roses, and rich archival ink.
+
+### Palette Architecture
+- **Primary (`#392538`):** Deep Plum / Archival Ink. Replaces pure black for all structural typography, primary buttons, and focal elements, lending warmth and high-contrast editorial legibility.
+- **Secondary (`#C5A46D`):** Muted Champagne Gold. Used for celebration badges, verified markers, AI prompt accents, focus rings, and premium milestone highlights.
+- **Tertiary (`#C97862`):** Soft Terracotta / Vintage Rose. Reserved for emotional highlights, guest response indicators, and secondary accent interactive states.
+- **Neutral Canvas (`#FAF7F0`):** Ivory / Warm Paper. Sets the ambient tone of the entire system, preventing sterile digital glare while maintaining natural daylight softness.
+
+### Functional & State Roles
+- **Card Base Surface:** `#FFFFFF` on `#FAF7F0` page ground; nested elevated cards use `#F5F0E8`.
+- **Structural Borders & Separators:** `#E8E1D5` for primary hairline framing (1px); `#DFD7C7` for interactive borders and subtle input dividers.
+- **Success / Botanical Sage:** `#4A6B53` signifies confirmed RSVPs, locked vendor deposits, and completed timeline phases.
+- **Warning / Spiced Ochre:** `#D97706` alerts to budget overruns or pending vendor deadlines.
+
+## Typography
+
+Typographic scale is balanced between the literary gravitas of `Playfair Display` and the functional clarity of `Plus Jakarta Sans`.
+
+- **Editorial Headlines (`Playfair Display`):** Reserved for page headings, event titles, narrative studio summaries, and AI-generated vision briefs. Maintain tight negative letter-spacing on display scales to preserve editorial density.
+- **Productivity & Interface Body (`Plus Jakarta Sans`):** Powers all dashboard data grids, guest seating manifests, vendor budget inputs, and system navigation. Neutral geometric shapes offset the display serif's ornamentation.
+- **Eyebrow & Metadata Accents:** Render `label-xs` in uppercase tracking (`letter-spacing: 0.08em`) when introducing card categories, chronological timelines, or curation status badges.
+
+## Layout & Spacing
+
+The layout philosophy mirrors modern luxury editorial spreads with fluid structural alignment. 
+
+- **Grid Architecture:** 12-column fluid grid on desktop (max width `1440px`), collapsing to 8 columns on tablet, and 4 columns on mobile. 
+- **Rhythm & Cadence:** Generous margins create breathing room around data-intensive tasks. Large editorial hero sections leverage `space-2xl` padding to distinguish planning milestones from dense administrative tools.
+- **Reflow Rules:** Complex multi-column seating and mood-board visualizers stack gracefully on mobile viewport widths, shifting horizontal sub-navigation into sticky horizontal carousels.
+
+## Elevation & Depth
+
+This design system avoids heavy drop shadows in favor of editorial layering, warm tonal contrasts, and tactile hairline boundaries.
+
+- **Hairline Framing:** Primary depth is established using 1px solid borders (`#E8E1D5`). Cards, modal dialogs, and segmented toolbars frame content cleanly without digital heaviness.
+- **Tonal Layering:** 
+  - Level 0 (Canvas): Ivory `#FAF7F0`.
+  - Level 1 (Panels & Master Cards): `#FFFFFF` bounded by `#E8E1D5`.
+  - Level 2 (Nested Tooling / AI Recommendation Blocks): `#F5F0E8` with no shadow, retaining flat, pressed-paper physicality.
+- **Ambient Illumination:** When floating action bars, dropdown menus, or modal sheets require z-axis lift, use an ultra-diffused shadow tinted with Deep Plum:
+  `box-shadow: 0 12px 32px -4px rgba(57, 37, 56, 0.06), 0 4px 12px -2px rgba(57, 37, 56, 0.03);`
+- **Celebratory Glass:** Sticky timeline controllers and header navigation use frosted paper translucency (`rgba(250, 247, 240, 0.85)` with `backdrop-filter: blur(12px)` and a bottom border of `#E8E1D5`).
+
+## Shapes
+
+The shape system balances architectural order with tactile softness.
+- **Standard Radius (`rounded` = 0.5rem):** Form inputs, tooltips, list row selections, and default action buttons.
+- **Card & Container Radius (`rounded-lg` = 1rem, `rounded-xl` = 1.5rem):** Guest profile cards, inspiration canvas tiles, and AI generation preview windows.
+- **Pill Geometry:** Reserved strictly for metadata tags, RSVP status badges, and quick-filter pills (`border-radius: 9999px`).
+- **Four-Point Sparkle Motif:** Geometric decorative accents and AI prompt triggers adopt a stylized 4-point star icon inscribed within a champagne-tinted circular or square silhouette.
+
+## Components
+
+### Buttons
+- **Primary:** Deep Plum background (`#392538`), text `#FAF7F0`, font `label-lg`, height 44px, `rounded` (0.5rem). Hover shifts background to `#252321` with subtle 1px uplift.
+- **Secondary / Studio Outline:** Transparent background, 1px border `#392538`, text `#392538`. Hover state fills with warm ivory-toned tint `rgba(57, 37, 56, 0.04)`.
+- **AI Concierge Action:** Linear gradient background (`#C5A46D` to `#D4AF37`), Deep Plum text `#252321`, paired with the 4-point sparkle icon prefix.
+
+### Chips & Badges
+- **Status Pills:** Height 24px, 12px horizontal padding, pill-shaped.
+  - *Confirmed / Accepted:* Background `rgba(74, 107, 83, 0.1)`, text `#4A6B53`, 1px border `rgba(74, 107, 83, 0.2)`.
+  - *Curated / AI Suggestion:* Background `rgba(197, 164, 109, 0.12)`, text `#93723E`, 1px border `rgba(197, 164, 109, 0.3)`.
+  - *Pending / RSVP Awaited:* Background `rgba(201, 120, 98, 0.1)`, text `#C97862`, 1px border `rgba(201, 120, 98, 0.2)`.
+
+### Form Fields & Inputs
+- **Base Style:** Background `#FFFFFF`, border 1px solid `#DFD7C7`, height 44px, horizontal padding `space-md`, text `#392538`, font `body-md`, radius `0.5rem`.
+- **Focus State:** Border color `#C5A46D` with a subtle box-shadow ring: `0 0 0 3px rgba(197, 164, 109, 0.15)`. No harsh browser outlines.
+- **Floating Labels:** Rendered in `label-xs` uppercase tracking in muted ink (`rgba(57, 37, 56, 0.6)`).
+
+### Selection Controls (Checkboxes & Radios)
+- **Checkboxes:** 18px square, `rounded` 4px, border 1.5px solid `#DFD7C7`. When checked, background fills with `#392538` displaying a white checkmark.
+- **Radio Buttons:** 18px circle, border 1.5px solid `#DFD7C7`. When selected, reveals an inner concentric dot in `#C5A46D`.
+
+### Cards & Editorial Canvas
+- **Editorial Canvas Card:** Background `#FFFFFF`, 1px hairline border `#E8E1D5`, `rounded-xl` (1.5rem), internal padding `space-xl`.
+- **Interactive Moodboard / Seating Tile:** Outer border `#E8E1D5`, internal radius `1rem`, smooth scale hover (`transform: translateY(-2px)` with shadow elevation transition).
+
+### Studio Timeline & Milestone Trackers
+- Continuous vertical or horizontal hairline (#E8E1D5) punctuated by circular node indicators: completed nodes in `#C5A46D` with checkmark; active step in `#392538` with outer champagne ring.

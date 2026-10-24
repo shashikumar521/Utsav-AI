@@ -1,0 +1,6 @@
+{
+  "name": "Utsav AI — Every Celebration, Beautifully Planned",
+  "description": "Bespoke AI event architect and concierge for weddings, milestone birthdays, cultural festivals, and corporate galas with budget precision and run-of-show timelines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

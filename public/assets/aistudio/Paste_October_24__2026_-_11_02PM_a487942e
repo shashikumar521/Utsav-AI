@@ -1,0 +1,785 @@
+# MASTER IMPLEMENTATION PROMPT — UTSAV AI
+## Complete, Functional, Premium AI Event Planning Website
+
+### PROJECT IDENTITY
+
+Project name: Utsav AI
+
+Tagline: “Every celebration, beautifully planned.”
+
+Supporting message: “From your first idea to the final celebration, your personal AI event planner brings every detail together.”
+
+You are a senior full-stack developer, AI engineer, UI/UX designer, accessibility specialist, and software tester.
+
+Your task is to finish and polish my existing Utsav AI website, which was designed in Google Stitch AI and exported to this project.
+
+**This is an existing project. Inspect it first, then improve and complete it. Do not rebuild it from scratch.**
+
+The final result must be a genuinely usable, responsive AI event-planning website, not a static mockup or a collection of non-functional screens.
+
+The highest priorities are:
+1. Fully working features.
+2. Clean, uncluttered UI.
+3. Minimal unnecessary scrolling.
+4. Consistent design across all pages.
+5. Reliable data handling.
+6. Responsive desktop and mobile experience.
+7. Real AI functionality where configured.
+8. Strong accessibility, performance, and SEO.
+
+---
+
+# PHASE 1 — INSPECT AND PROTECT THE EXISTING PROJECT
+
+Before modifying any code:
+
+1. Inspect the complete project structure.
+2. Identify the existing framework, package manager, routing, dependencies, components, styles, assets, and available backend integrations.
+3. Inspect the exported Stitch design carefully.
+4. Identify all existing pages, buttons, forms, navigation items, and implemented features.
+5. Identify missing functionality, broken interactions, duplicated components, layout problems, and build errors.
+6. Reuse the existing project architecture and working code wherever possible.
+7. Preserve the Utsav AI logo, existing design assets, brand identity, and useful visual elements.
+8. Preserve working features and integrations.
+9. Do not replace the application with a simplified demo, generic template, or single landing page.
+10. Do not delete working code merely to make implementation easier.
+
+Create an internal implementation checklist and work through it systematically.
+
+If a feature already works, verify it and improve it only when necessary. If a feature is incomplete, implement it properly. If a required feature is missing, add it in a way that matches the existing architecture.
+
+Do not stop after providing a plan. Continue implementing the website.
+
+---
+
+# PHASE 2 — ESTABLISH A CLEAR DESIGN SYSTEM
+
+Use this visual identity consistently throughout the application.
+
+Brand colors:
+- Warm ivory: #FAF7F0
+- Deep plum: #392538
+- Champagne gold: #C5A46D
+- Soft terracotta: #C97862
+- Dark ink: #252321
+
+Design direction:
+- Premium editorial style.
+- Elegant serif headlines and readable sans-serif body text.
+- Refined celebration photography.
+- Subtle borders and soft shadows.
+- Consistent card corners and spacing.
+- Restrained gold accents.
+- Smooth, lightweight animations.
+- Clear visual hierarchy.
+
+Create reusable design tokens for colors, typography, spacing, borders, shadows, focus states, and responsive breakpoints.
+
+Use consistent reusable components for:
+- Buttons
+- Inputs and select fields
+- Cards
+- Modal dialogs
+- Tabs
+- Navigation
+- Badges
+- Empty states
+- Loading states
+- Error messages
+- Toast notifications
+- Confirmation dialogs
+
+### Avoid a clumsy interface
+
+Strict rules:
+- Do not place every feature on one long page.
+- Do not repeat the same navigation or feature cards in multiple locations.
+- Do not use oversized cards for small amounts of information.
+- Do not add large empty spaces between sections.
+- Do not use excessive gradients, decorative shapes, shadows, or animations.
+- Do not use tiny text to force content into a smaller area.
+- Do not place too many buttons beside one another.
+- Do not display large datasets on the homepage.
+- Do not create duplicate dashboard menus.
+- Do not use horizontal scrolling for normal page content.
+- Do not let cards, dialogs, or navigation overlap.
+- Do not create inconsistent light and dark text combinations.
+
+Use approximately 8–12 px spacing for related controls and 20–28 px between major content groups, adjusting responsively where necessary.
+
+Use short descriptions, clear labels, readable line lengths, and consistent alignment.
+
+The result should feel calm, premium, and professionally designed.
+
+---
+
+# PHASE 3 — CREATE THE ANIMATED WELCOME EXPERIENCE
+
+Implement a distinctive opening experience for first-time visitors.
+
+### Opening screen
+
+Show a full-screen, warm ivory celebration scene with:
+- The Utsav AI logo.
+- Elegant floating flower petals.
+- Softly glowing festive lights.
+- Subtle champagne-gold particles.
+- Beautiful wedding or celebration imagery.
+- Smooth fade-in and gentle motion.
+
+Display:
+
+**Every celebration, beautifully planned.**
+
+“Dream it. Plan it. Celebrate it.”
+
+Primary button: “Plan My Celebration”
+
+Secondary button: “Explore Utsav AI”
+
+### Behavior
+
+1. Animate the logo and text with a refined entrance.
+2. Keep the opening animation approximately 2–3 seconds.
+3. Transition smoothly into the homepage.
+4. Provide a visible Skip option.
+5. Show the experience once per browser session rather than every time the user navigates.
+6. Respect the user's reduced-motion preference.
+7. Use optimized assets and avoid blocking page interaction.
+8. Do not autoplay audio.
+9. Ensure the experience works on mobile devices.
+10. If animation assets are unavailable, create the effect using lightweight CSS or existing project assets.
+
+Do not use a large animation that delays access to the website.
+
+---
+
+# PHASE 4 — COMPLETE THE PUBLIC WEBSITE
+
+Implement a professional homepage with the following sections.
+
+### 4.1 Navigation
+
+Include:
+- Utsav AI logo.
+- Home.
+- Explore.
+- How It Works.
+- Sign In.
+- Start Planning.
+
+Keep the header compact. On mobile, use a functional navigation menu.
+
+Do not repeat these same links in a second large navigation section.
+
+### 4.2 Hero section
+
+Headline:
+
+**Your next unforgettable celebration starts here.**
+
+Description:
+
+“Plan weddings, birthdays, festivals, corporate events, and intimate gatherings with your personal AI planner.”
+
+Actions:
+- Start Planning.
+- Explore Celebrations.
+
+Use a balanced text-and-image layout on desktop. On mobile, stack the content with sensible spacing.
+
+### 4.3 Quick event creation
+
+Provide a compact event form with:
+- Event type.
+- Event date.
+- City or venue location.
+- Estimated budget.
+- Number of guests.
+
+Button: “Create My Plan”
+
+Validate required fields. Display understandable errors. When submitted, preserve the entered information and continue into the event creation workflow.
+
+### 4.4 Event discovery
+
+Show compact cards for:
+- Weddings.
+- Birthdays.
+- Festivals.
+- Corporate Events.
+- Anniversaries.
+- Private celebrations.
+
+Each card must have a suitable image, concise description, and working action.
+
+Use optimized images with meaningful alternative text. Do not use broken image links or repeat the same image unnecessarily.
+
+### 4.5 How it works
+
+Present three steps:
+1. Tell us about your celebration.
+2. Generate and customize your event plan.
+3. Organize the details and celebrate.
+
+### 4.6 Feature overview
+
+Use a compact grid highlighting:
+- AI event planning.
+- Budget management.
+- Timeline and task tracking.
+- Moodboard creation.
+- Guest management.
+- Vendor organization.
+
+### 4.7 Final call to action
+
+Headline: “Your celebration deserves something extraordinary.”
+
+Button: “Start Planning with Utsav AI”
+
+Keep the footer concise, with working links to available pages, privacy information, and contact information where configured.
+
+Do not invent a physical office address, telephone number, business registration, testimonials, or customer statistics.
+
+---
+
+# PHASE 5 — BUILD A COMPACT, FULLY FUNCTIONAL DASHBOARD
+
+The dashboard is the most important part of this application.
+
+Use a compact application layout rather than a long marketing page.
+
+### Desktop layout
+
+Use:
+- A narrow, collapsible left sidebar.
+- A compact top bar.
+- A main content area.
+- Responsive summary cards.
+- Dedicated pages for detailed features.
+
+Sidebar:
+1. Overview
+2. My Events
+3. Budget
+4. Timeline & Tasks
+5. Moodboard
+6. Guests & Vendors
+7. AI Assistant
+8. Settings
+
+Keep the sidebar consistent across dashboard pages. Highlight the active page. On smaller screens, convert it into a drawer or suitable mobile navigation.
+
+Do not duplicate the entire sidebar in the top navigation.
+
+### Dashboard overview
+
+Show a short personalized greeting:
+
+“Welcome back! Let's make your celebration unforgettable.”
+
+Below it, display four compact summary cards:
+- Next event and countdown.
+- Total budget and remaining budget.
+- Task completion percentage.
+- Guest RSVP summary.
+
+Then show:
+- Upcoming tasks.
+- Budget summary.
+- Upcoming milestones.
+- One compact AI recommendation panel.
+
+Use a two-column layout where appropriate.
+
+Do not show the entire guest list, full budget table, all tasks, every vendor, or all moodboard images on the overview.
+
+Provide “View all” links to the relevant dedicated pages.
+
+The overview should fit approximately within one laptop viewport when practical, without making text or controls too small. Allow natural scrolling when the content requires it.
+
+### Dashboard data rules
+
+- Use actual saved event data.
+- Derive budget totals from budget entries.
+- Derive task completion from actual task status.
+- Derive guest counts from saved RSVP records.
+- Derive countdowns from event dates.
+- Show meaningful empty states for new users.
+- Never display fake statistics as if they belonged to the user.
+
+If the user has not created an event, display a clean onboarding state with a “Create Your First Event” button.
+
+---
+
+# PHASE 6 — IMPLEMENT EVENT MANAGEMENT
+
+Users must be able to create, view, edit, and delete events.
+
+Each event should support:
+- Event name.
+- Event type.
+- Date and time.
+- Location.
+- Guest count.
+- Budget.
+- Theme.
+- Description.
+- Planning status.
+
+Requirements:
+- Validate required fields.
+- Allow editing after creation.
+- Show confirmation before destructive deletion.
+- Persist changes.
+- Display events in a compact card or list layout.
+- Provide useful empty and error states.
+- Allow users to open an event to see its planning workspace.
+- Prevent accidental loss of unsaved form data.
+
+If multiple events are supported, every budget, task, guest, vendor, and moodboard item must be associated with the correct event.
+
+---
+
+# PHASE 7 — IMPLEMENT BUDGET MANAGEMENT
+
+Create a dedicated Budget page.
+
+Include:
+- Total planned budget.
+- Actual or recorded spending.
+- Remaining budget.
+- Category-wise allocation.
+- Individual budget items.
+- Add, edit, and delete actions.
+- Optional notes and payment status.
+
+Example categories:
+- Venue.
+- Catering.
+- Decoration.
+- Photography.
+- Entertainment.
+- Invitations.
+- Transportation.
+- Other expenses.
+
+Use real calculations from stored entries.
+
+Remaining budget = total planned budget minus recorded spending.
+
+Prevent invalid negative amounts where inappropriate, validate currency values, and clearly distinguish planned amounts from actual spending.
+
+Use a compact chart only when it makes the data easier to understand. On mobile, make the chart and accompanying figures readable.
+
+Do not invent expenses or display static chart values as real user data.
+
+---
+
+# PHASE 8 — IMPLEMENT TIMELINE AND TASK MANAGEMENT
+
+Create a dedicated Timeline & Tasks page.
+
+Allow users to:
+- Add tasks.
+- Edit task details.
+- Set deadlines.
+- Assign categories or priorities.
+- Mark tasks as completed.
+- Reopen completed tasks.
+- Delete tasks.
+- Filter by pending, completed, priority, and due date.
+
+Display:
+- Upcoming tasks.
+- Overdue tasks.
+- Completed tasks.
+- Overall completion percentage.
+- Important event milestones.
+
+Generate an initial suggested checklist based on the event type and date when possible.
+
+If a task is overdue, display a clear status. Do not silently change task completion.
+
+Keep the layout compact with tabs, filters, and grouped task lists instead of an extremely long page.
+
+---
+
+# PHASE 9 — IMPLEMENT MOODBOARD STUDIO
+
+Create a dedicated visual inspiration workspace.
+
+Include:
+- Event theme.
+- Color palette.
+- Decoration inspiration.
+- Outfit inspiration.
+- Venue inspiration.
+- Saved notes.
+- Image collections.
+- Ability to add and remove inspiration items.
+
+Users should be able to save a moodboard against an event.
+
+Use existing project assets or reliable image sources. If external image services require credentials, handle missing credentials gracefully.
+
+Do not make images appear saved unless the application has actually saved their references.
+
+Do not copy copyrighted images into the project without appropriate permission.
+
+Allow the user to revisit and edit their saved moodboard.
+
+---
+
+# PHASE 10 — IMPLEMENT GUEST AND VENDOR MANAGEMENT
+
+Create a dedicated Guests & Vendors page, using clear tabs or sub-navigation.
+
+### Guest management
+
+Support:
+- Guest name.
+- Contact details where supplied.
+- RSVP status.
+- Guest count.
+- Optional group or notes.
+- Add, edit, delete, and search.
+- Filters for confirmed, pending, and declined.
+
+Protect guest information and do not expose private contact details publicly.
+
+### Vendor management
+
+Support:
+- Vendor name.
+- Category.
+- Contact details.
+- Estimated cost.
+- Booking status.
+- Notes.
+- Website link when provided.
+
+Suggested categories:
+- Venue.
+- Catering.
+- Decoration.
+- Photography.
+- Entertainment.
+- Transportation.
+
+Make it clear which vendor information was entered by the user and which information came from an external source.
+
+Do not invent real vendor availability, prices, reviews, or booking confirmations.
+
+If external vendor discovery is not integrated, provide a working manual vendor-management workflow and clearly label recommendations as suggestions.
+
+---
+
+# PHASE 11 — IMPLEMENT A REAL AI EVENT ASSISTANT
+
+Create a conversational AI assistant that helps users plan events.
+
+The assistant should use the selected event's actual details when generating recommendations.
+
+It should be able to help with:
+- Event ideas and themes.
+- Budget allocation.
+- Planning timelines.
+- Decoration suggestions.
+- Guest planning.
+- Catering ideas.
+- Task checklists.
+- Weather-aware planning when a reliable weather service is configured.
+- Personalized recommendations based on the user's preferences.
+
+### Example conversation
+
+User: “Help me plan a birthday party for 40 people with a budget of ₹25,000.”
+
+The assistant should:
+1. Understand the event type, guest count, and budget.
+2. Ask for missing important information when necessary.
+3. Suggest a practical budget breakdown.
+4. Create a draft checklist.
+5. Suggest an appropriate timeline.
+6. Let the user review and save the proposed plan.
+
+### AI implementation requirements
+
+- Inspect the project's existing AI integration before adding another.
+- Reuse a working configured AI service.
+- If no integration exists, implement it using the supported SDK and the model available to the project.
+- Keep API keys and secrets on the server side.
+- Read credentials from environment variables or the hosting platform's secret manager.
+- Never expose private API keys in frontend code, browser bundles, public repositories, or logs.
+- Validate requests and handle provider errors.
+- Show loading, retry, and error states.
+- Avoid claiming that a plan was saved until the save operation succeeds.
+- Do not hardcode a few example answers and present them as live AI.
+
+If the AI service or credentials are unavailable, display a clear setup message and implement a useful non-AI event-planning fallback. Do not crash the website.
+
+### Saving AI suggestions
+
+Where appropriate, provide explicit actions such as:
+- Add to Tasks.
+- Add to Budget.
+- Save to Event Notes.
+
+Ask for confirmation before making significant changes. Persist changes using the same data system as the rest of the application.
+
+---
+
+# PHASE 12 — DATA STORAGE AND AUTHENTICATION
+
+First inspect whether the project already has a backend, database, or authentication integration. Preserve and reuse it where appropriate.
+
+If persistence is missing, implement the simplest reliable architecture compatible with the current project.
+
+### Data requirements
+
+Store and retrieve:
+- User profiles.
+- Events.
+- Budget entries.
+- Tasks.
+- Moodboards.
+- Guests.
+- Vendors.
+- Saved AI suggestions.
+
+Use stable identifiers and relationships between records.
+
+Validate user input on the server when a backend exists. Handle network errors and failed writes properly.
+
+For an authenticated multi-user system:
+- Users must only access records they are authorized to access.
+- Enforce ownership and access rules on the server or database.
+- Do not rely only on hiding frontend controls for security.
+- Protect private event and guest data.
+
+If authentication is already configured, test the existing sign-in and sign-out flows.
+
+If authentication is missing, use an appropriate supported provider only when the required configuration is available. Otherwise, implement the necessary integration points and document the setup steps.
+
+For a local prototype without a backend, use browser storage only as a clearly limited fallback. Do not represent browser-local data as secure, cross-device, cloud-backed storage.
+
+Never fabricate a successful login, database write, or cloud synchronization.
+
+---
+
+# PHASE 13 — NAVIGATION AND USER EXPERIENCE
+
+Every visible control must have a defined purpose.
+
+Implement and verify:
+- Navigation links.
+- Primary and secondary buttons.
+- Event creation.
+- Edit and delete actions.
+- Form submission.
+- Search and filters.
+- Tabs and drawers.
+- Dialogs.
+- AI assistant interactions.
+- Save and cancel actions.
+- Empty-state actions.
+- Error recovery.
+
+Use the existing routing system. Avoid full-page reloads where the current architecture supports client-side navigation.
+
+Provide clear feedback after successful operations and understandable errors when something fails.
+
+Disable submit buttons during in-progress requests to prevent duplicate submissions.
+
+Use confirmation dialogs for destructive operations.
+
+Ensure that the browser back button and direct navigation to valid routes work properly.
+
+Do not leave placeholder links, buttons with no action, or misleading “Coming Soon” labels for features that are required to work.
+
+---
+
+# PHASE 14 — SEO AND PUBLIC DISCOVERY
+
+Make public marketing pages search-engine friendly.
+
+Implement, where supported by the existing framework:
+- Descriptive page titles.
+- Unique meta descriptions.
+- Canonical URLs based on the actual deployed domain.
+- Open Graph metadata.
+- Social-sharing images.
+- Semantic HTML headings.
+- Descriptive image alt text.
+- A valid sitemap.
+- A robots.txt file.
+- A favicon using the Utsav AI branding.
+- Internal links between relevant public pages.
+- Structured data only when accurate and applicable.
+
+Create useful public pages for relevant topics such as:
+- AI Event Planner.
+- Wedding Planning.
+- Birthday Party Planning.
+- Festival Planning.
+- Corporate Event Planning.
+- Event Budget Planning.
+
+These pages must provide genuinely useful, distinct content rather than duplicate keyword-filled templates.
+
+Do not expose private dashboard content to search engines.
+
+Require authentication or appropriate authorization for private user data. Prevent internal API endpoints and private records from being indexed.
+
+Do not promise a Google ranking. Optimize the website so it is technically accessible to search engines and can be indexed appropriately.
+
+Use the actual canonical deployment domain once it is confirmed. Do not invent a production domain.
+
+---
+
+# PHASE 15 — PERFORMANCE, ACCESSIBILITY, AND SECURITY
+
+### Performance
+- Reuse existing dependencies when possible.
+- Avoid unnecessary packages.
+- Optimize images and use responsive image sizes.
+- Lazy-load noncritical images.
+- Avoid blocking animations.
+- Minimize unnecessary re-renders.
+- Avoid repeated API calls.
+- Show loading placeholders for slow operations.
+- Keep mobile performance a priority.
+
+### Accessibility
+- Use semantic elements.
+- Provide visible keyboard focus.
+- Ensure sufficient color contrast.
+- Associate labels with inputs.
+- Provide meaningful error messages.
+- Use keyboard-accessible menus and dialogs.
+- Add accessible names to icon-only buttons.
+- Respect reduced-motion settings.
+- Do not communicate status through color alone.
+
+### Security
+- Keep credentials out of source code.
+- Validate data at trust boundaries.
+- Protect authenticated routes.
+- Enforce server-side authorization.
+- Avoid unsafe HTML rendering.
+- Do not log passwords, tokens, or private guest information.
+- Use secure handling for any uploaded files.
+- Add rate limiting to sensitive public endpoints where supported.
+
+---
+
+# PHASE 16 — RESPONSIVE DESIGN REQUIREMENTS
+
+Test the website at representative widths:
+- Mobile: 360–390 px.
+- Large mobile: approximately 430 px.
+- Tablet: approximately 768 px.
+- Laptop: 1366 px.
+- Desktop: 1440 px and above.
+
+At each size, check:
+- No horizontal overflow.
+- No overlapping content.
+- No clipped buttons.
+- No tiny text.
+- No broken navigation.
+- No excessive hero height.
+- No huge vertical gaps.
+- No cards extending beyond the screen.
+- No inaccessible dialogs.
+- No hidden primary actions.
+
+On mobile, keep the dashboard easy to navigate and ensure that important actions remain visible.
+
+---
+
+# PHASE 17 — TEST, DEBUG, AND FINISH THE WEBSITE
+
+Do not finish when the pages merely look correct.
+
+Perform a full implementation and verification pass.
+
+### Build checks
+- Install or verify dependencies using the project's existing package manager.
+- Run the existing build command.
+- Resolve compilation and type errors.
+- Resolve missing imports and invalid references.
+- Resolve runtime errors.
+- Check browser console errors where browser testing is available.
+- Verify routing and page refresh behavior.
+
+### Functional checks
+Test these workflows:
+
+1. Open the website and skip or complete the welcome animation.
+2. Navigate through the public homepage.
+3. Create an event with valid information.
+4. Verify that invalid form submissions show errors.
+5. Open the created event.
+6. Edit the event and verify that the changes persist.
+7. Add budget entries and verify calculations.
+8. Add tasks and mark them complete.
+9. Add guests and change RSVP status.
+10. Add and revisit moodboard items.
+11. Add and edit vendor information.
+12. Ask the AI assistant for a plan when AI credentials are configured.
+13. Save an AI-generated suggestion and verify the result.
+14. Refresh the page and verify saved data.
+15. Verify authentication and data isolation when supported.
+16. Test the main flows on mobile and desktop.
+
+If automated tests already exist, extend and run them. Add focused tests for important calculations, data validation, and application workflows where practical.
+
+Do not claim a workflow passed unless it was actually tested.
+
+---
+
+# PHASE 18 — IMPLEMENTATION RULES
+
+Follow these rules throughout the task:
+
+1. Modify the existing project directly.
+2. Preserve the existing Stitch design wherever it is good.
+3. Do not replace the entire codebase with a demo.
+4. Do not remove useful existing features.
+5. Do not return only instructions or a plan.
+6. Implement features in logical phases.
+7. Reuse components and avoid duplicated logic.
+8. Keep code maintainable and reasonably organized.
+9. Do not use fake data as real user information.
+10. Do not hardcode AI output as if it were generated dynamically.
+11. Do not expose secrets.
+12. Do not claim external integrations work when they are not configured.
+13. Resolve errors introduced by your changes.
+14. Keep the application usable while implementing additional features.
+15. If an external service requires credentials, implement proper error handling and document the exact environment variables needed.
+16. Do not silently skip a feature that cannot be completed. State the blocker and complete any independent work that can still be implemented.
+17. Do not sacrifice usability merely to make the pages shorter.
+18. Keep the design clean, uncluttered, and consistent.
+
+# FINAL ACCEPTANCE CRITERIA
+
+The project is ready only when:
+
+- The opening experience is polished and skippable.
+- The public homepage is visually clear and responsive.
+- The dashboard is compact and does not show every feature on one long page.
+- Each major feature has a dedicated, usable view.
+- Event and planning information persists using the configured data system.
+- Budget calculations and task progress are derived from actual records.
+- Navigation and important buttons work.
+- AI planning works when credentials are configured and fails gracefully otherwise.
+- Private user data is properly protected by the configured architecture.
+- Mobile and desktop layouts are usable.
+- SEO metadata and public-page indexing controls are in place where supported.
+- The production build completes successfully.
+- Known blockers and required deployment configuration are documented.
+
+**Begin by inspecting the existing project files, then implement the website in place. Prioritize functional correctness, a clean interface, minimal unnecessary scrolling, and consistent Utsav AI branding. Continue through implementation and testing instead of stopping after the initial analysis.**
