@@ -200,10 +200,10 @@ export const GuestsVendorsView: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-plum/10">
         <div>
           <h1 className="font-serif text-2xl md:text-3xl font-semibold text-plum">
-            Guests & Vendor Roster
+            Guests &amp; Vendors
           </h1>
           <p className="text-xs md:text-sm text-plum/60 mt-1">
-            {currentEvent?.title || currentEvent?.name} · RSVP coordination and vendor contract governance
+            Manage guests and vendors for {currentEvent?.title || currentEvent?.name}
           </p>
         </div>
 
@@ -218,7 +218,7 @@ export const GuestsVendorsView: React.FC = () => {
             }`}
           >
             <Users size={14} />
-            Guest RSVP ({totalGuests})
+            Manage Guests ({totalGuests})
           </button>
           <button
             onClick={() => setActiveTab('vendors')}
@@ -229,7 +229,7 @@ export const GuestsVendorsView: React.FC = () => {
             }`}
           >
             <Store size={14} />
-            Vendor Roster ({vendors.length})
+            Manage Vendors ({vendors.length})
           </button>
         </div>
       </div>

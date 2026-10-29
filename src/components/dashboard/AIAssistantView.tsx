@@ -136,7 +136,7 @@ export const AIAssistantView: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <h1 className="font-serif text-2xl md:text-3xl font-semibold text-plum">
-              Celebration Intelligence Concierge
+              AI Planner
             </h1>
             <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gold/20 text-plum border border-gold/40 flex items-center gap-1">
               <Sparkles size={11} className="text-gold" />
@@ -144,7 +144,7 @@ export const AIAssistantView: React.FC = () => {
             </span>
           </div>
           <p className="text-xs md:text-sm text-plum/60 mt-1">
-            Grounded in active event parameters for <strong className="text-plum font-semibold">{currentEvent?.title}</strong> ({formatCurrency(currentEvent?.totalBudget || 0)} budget)
+            Event planning advice for <strong className="text-plum font-semibold">{currentEvent?.title}</strong> ({formatCurrency(currentEvent?.totalBudget || 0)} budget)
           </p>
         </div>
 
@@ -245,7 +245,7 @@ export const AIAssistantView: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-plum/40 animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-2 h-2 rounded-full bg-plum/40 animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-2 h-2 rounded-full bg-plum/40 animate-bounce" style={{ animationDelay: '300ms' }} />
-                <span className="text-xs text-plum/60 ml-2 font-medium">Utsav Intelligence calculating optimal celebration protocols...</span>
+                <span className="text-xs text-plum/60 ml-2 font-medium">Thinking...</span>
               </div>
             </div>
           )}

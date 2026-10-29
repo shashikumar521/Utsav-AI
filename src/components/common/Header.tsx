@@ -5,7 +5,7 @@ import { ActiveTab } from '../../types';
 interface HeaderProps {
   currentTab: ActiveTab;
   onNavigate: (tab: ActiveTab) => void;
-  onReopenWelcome: () => void;
+  onReopenWelcome?: () => void;
   onOpenQuickPlan?: () => void;
   onOpenGuidesModal?: () => void;
 }
@@ -15,32 +15,92 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigate,
   onReopenWelcome,
   onOpenQuickPlan,
-  onOpenGuidesModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [userEmail, setUserEmail] = useState(() => {
+    try {
+      return localStorage.getItem('utsav_user_email') || 'Host (Guest)';
+    } catch {
+      return 'Host (Guest)';
+    }
+  });
+  const [tempEmail, setTempEmail] = useState('');
 
   const isDashboard = currentTab !== 'landing';
 
+  const handleStartPlanning = () => {
+    if (onOpenQuickPlan) {
+      onOpenQuickPlan();
+    } else {
+      const el = document.getElementById('quick-plan');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        onNavigate('overview');
+      }
+    }
+  };
+
+  const handleExploreEvents = () => {
+    if (isDashboard) {
+      onNavigate('events');
+    } else {
+      const el = document.getElementById('popular-events');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        onNavigate('events');
+      }
+    }
+  };
+
+  const handleHowItWorks = () => {
+    if (isDashboard) {
+      onNavigate('landing');
+      setTimeout(() => {
+        document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleSignInSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (tempEmail.trim()) {
+      setUserEmail(tempEmail.trim());
+      try {
+        localStorage.setItem('utsav_user_email', tempEmail.trim());
+      } catch {}
+      setShowSignInModal(false);
+      setTempEmail('');
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#FAF7F0]/90 backdrop-blur-md border-b border-[#E8E1D5] shadow-[0_4px_20px_-4px_rgba(57,37,56,0.04)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-6">
-        {/* Zone 1: Brand Wordmark Element */}
+    <header className="sticky top-0 z-40 w-full bg-[#FAF7F0]/95 backdrop-blur-md border-b border-[#E8E1D5] shadow-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        {/* Brand Logo */}
         <button
           onClick={() => onNavigate('landing')}
-          className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A46D] rounded-lg"
-          aria-label="Utsav AI Homepage"
+          className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A46D] rounded-lg"
+          aria-label="Utsav AI Home"
         >
           <Logo size="md" />
         </button>
 
-        {/* Zone 2: Navigation Links (single-line, clean unboxed text) */}
+        {/* Compact Navigation Links */}
         <nav
           aria-label="Main Navigation"
           className="hidden md:flex items-center gap-1 font-sans text-xs lg:text-sm font-medium text-[#4C454A]"
         >
           <button
-            onClick={() => onNavigate('landing')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
+            onClick={() => {
+              if (isDashboard) onNavigate('landing');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className={`px-3 py-1.5 rounded-lg transition-colors ${
               currentTab === 'landing'
                 ? 'bg-[#F4EFE6] text-[#392538] font-semibold'
                 : 'hover:bg-[#F4EFE6] hover:text-[#392538]'
@@ -50,98 +110,58 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <button
-            onClick={() => {
-              if (currentTab !== 'landing') onNavigate('landing');
-              setTimeout(() => {
-                document.getElementById('quick-plan')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-            className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] whitespace-nowrap transition-colors"
+            onClick={handleExploreEvents}
+            className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] transition-colors"
           >
-            Quick Plan
+            Explore Events
           </button>
 
           <button
-            onClick={() => {
-              if (currentTab !== 'landing') onNavigate('landing');
-              setTimeout(() => {
-                document.getElementById('featured-events')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-            className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] whitespace-nowrap transition-colors"
+            onClick={handleHowItWorks}
+            className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] transition-colors"
           >
-            Celebrations
+            How It Works
           </button>
 
-          <button
-            onClick={() => {
-              if (currentTab !== 'landing') onNavigate('landing');
-              setTimeout(() => {
-                document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-            className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] whitespace-nowrap transition-colors"
-          >
-            Methodology
-          </button>
-
-          {onOpenGuidesModal && (
+          {isDashboard && (
             <button
-              onClick={onOpenGuidesModal}
-              className="px-3 py-1.5 rounded-lg hover:bg-[#F4EFE6] hover:text-[#392538] whitespace-nowrap transition-colors"
+              onClick={() => onNavigate('overview')}
+              className="px-3 py-1.5 rounded-lg bg-[#392538] text-white font-semibold"
             >
-              Field Guides
+              Dashboard
             </button>
           )}
-
-          <button
-            onClick={() => onNavigate('overview')}
-            className={`px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
-              isDashboard
-                ? 'bg-[#392538] text-[#FAF7F0] font-semibold'
-                : 'hover:bg-[#F4EFE6] text-[#755a2a] font-semibold'
-            }`}
-          >
-            Command Center
-          </button>
         </nav>
 
-        {/* Zone 3: Primary Action & Quick Controls */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={onReopenWelcome}
-            className="p-2 rounded-lg text-[#755a2a] hover:text-[#392538] hover:bg-[#F4EFE6] transition-colors inline-flex items-center gap-1 text-xs font-semibold focus-visible:ring-2 focus-visible:ring-[#C5A46D]"
-            title="Replay celebration welcome intro"
-          >
-            <span className="material-symbols-outlined text-base">magic_button</span>
-            <span className="hidden sm:inline">Intro</span>
-          </button>
-
-          {isDashboard ? (
+        {/* Action Buttons: Intro + Sign In + Start Planning */}
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          {onReopenWelcome && (
             <button
-              onClick={() => onNavigate('ai-assistant')}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#392538] text-[#FAF7F0] text-xs sm:text-sm font-semibold hover:bg-[#231123] transition shadow-xs"
+              onClick={onReopenWelcome}
+              className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg text-[#755a2a] hover:text-[#392538] hover:bg-[#F4EFE6] transition-colors inline-flex items-center gap-1 text-xs font-semibold focus-visible:ring-2 focus-visible:ring-[#C5A46D]"
+              title="Replay celebration welcome intro"
+              aria-label="Replay Welcome Intro"
             >
-              <span className="material-symbols-outlined text-sm text-[#C5A46D]">auto_awesome</span>
-              <span className="whitespace-nowrap">AI Assistant</span>
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                if (onOpenQuickPlan) {
-                  onOpenQuickPlan();
-                } else {
-                  const el = document.getElementById('quick-plan');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  else onNavigate('overview');
-                }
-              }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#392538] text-[#FAF7F0] text-xs sm:text-sm font-semibold hover:bg-[#231123] transition shadow-xs focus-visible:ring-2 focus-visible:ring-[#C5A46D]"
-            >
-              <span className="whitespace-nowrap">Start Planning</span>
-              <span className="material-symbols-outlined text-sm text-[#C5A46D]">arrow_forward</span>
+              <span className="material-symbols-outlined text-base text-[#C5A46D]">auto_awesome</span>
+              <span className="hidden sm:inline">Intro</span>
             </button>
           )}
+
+          <button
+            onClick={() => setShowSignInModal(true)}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#392538] hover:bg-[#F4EFE6] rounded-lg border border-[#E8E1D5] transition-colors"
+          >
+            <span className="material-symbols-outlined text-sm text-[#755a2a]">account_circle</span>
+            <span className="truncate max-w-[120px]">{userEmail}</span>
+          </button>
+
+          <button
+            onClick={handleStartPlanning}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#392538] text-[#FAF7F0] text-xs sm:text-sm font-semibold hover:bg-[#231123] transition-colors shadow-xs focus-visible:ring-2 focus-visible:ring-[#C5A46D]"
+          >
+            <span>Start Planning</span>
+            <span className="material-symbols-outlined text-sm text-[#C5A46D]">arrow_forward</span>
+          </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
@@ -163,6 +183,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => {
               onNavigate('landing');
               setMobileMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538] font-medium"
           >
@@ -170,70 +191,107 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={() => {
-              onNavigate('overview');
-              setMobileMenuOpen(false);
-            }}
-            className="text-left px-3 py-2 rounded-lg bg-[#392538] text-[#FAF7F0] font-semibold"
-          >
-            Command Center
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('budget');
+              handleExploreEvents();
               setMobileMenuOpen(false);
             }}
             className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538]"
           >
-            Budget Studio
+            Explore Events
           </button>
           <button
             onClick={() => {
-              onNavigate('timeline');
+              handleHowItWorks();
               setMobileMenuOpen(false);
             }}
             className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538]"
           >
-            Timeline & Tasks
+            How It Works
           </button>
-          <button
-            onClick={() => {
-              onNavigate('moodboard');
-              setMobileMenuOpen(false);
-            }}
-            className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538]"
-          >
-            Moodboard Studio
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('guests');
-              setMobileMenuOpen(false);
-            }}
-            className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538]"
-          >
-            Guests & Vendors
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('ai-assistant');
-              setMobileMenuOpen(false);
-            }}
-            className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#755a2a] font-semibold flex items-center justify-between"
-          >
-            <span>AI Concierge</span>
-            <span className="text-[10px] bg-[#C5A46D]/20 px-1.5 py-0.5 rounded text-[#755a2a]">PRO</span>
-          </button>
-          {onOpenGuidesModal && (
+          {onReopenWelcome && (
             <button
               onClick={() => {
-                onOpenGuidesModal();
+                onReopenWelcome();
                 setMobileMenuOpen(false);
               }}
-              className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#392538]"
+              className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#755a2a] font-medium flex items-center justify-between"
             >
-              Editorial Field Guides
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-base text-[#C5A46D]">auto_awesome</span>
+                <span>Replay Intro</span>
+              </span>
             </button>
           )}
+          <button
+            onClick={() => {
+              setShowSignInModal(true);
+              setMobileMenuOpen(false);
+            }}
+            className="text-left px-3 py-2 rounded-lg hover:bg-[#F4EFE6] text-[#755a2a] font-medium flex items-center justify-between"
+          >
+            <span>Account: {userEmail}</span>
+            <span className="material-symbols-outlined text-sm">login</span>
+          </button>
+          <button
+            onClick={() => {
+              handleStartPlanning();
+              setMobileMenuOpen(false);
+            }}
+            className="text-center mt-2 py-2.5 px-4 bg-[#392538] text-white rounded-xl font-semibold shadow-xs"
+          >
+            Start Planning
+          </button>
+        </div>
+      )}
+
+      {/* Clean Sign In Modal */}
+      {showSignInModal && (
+        <div className="fixed inset-0 z-50 bg-[#392538]/40 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-[#E8E1D5] relative animate-in fade-in duration-200">
+            <button
+              onClick={() => setShowSignInModal(false)}
+              className="absolute top-4 right-4 text-[#4C454A] hover:text-[#392538]"
+              aria-label="Close"
+            >
+              <span className="material-symbols-outlined text-lg">close</span>
+            </button>
+
+            <div className="flex items-center gap-2 mb-3">
+              <span className="p-2 rounded-lg bg-[#F4EFE6] text-[#755a2a]">
+                <span className="material-symbols-outlined text-xl">person</span>
+              </span>
+              <div>
+                <h3 className="font-serif text-lg font-bold text-[#392538]">Host Account</h3>
+                <p className="text-xs text-[#4C454A]">Save and sync your event plans</p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSignInSubmit} className="space-y-3 mt-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#392538] mb-1">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="name@example.com"
+                  value={tempEmail}
+                  onChange={(e) => setTempEmail(e.target.value)}
+                  className="w-full px-3 py-2 text-xs bg-[#FAF7F0] border border-[#E8E1D5] rounded-xl focus:outline-none focus:border-[#392538]"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-2.5 bg-[#392538] text-white rounded-xl text-xs font-semibold hover:bg-[#231123] transition-colors shadow-xs"
+              >
+                Save & Continue
+              </button>
+            </form>
+
+            <p className="text-[11px] text-[#4C454A] text-center mt-3">
+              Your plans are automatically saved on this device.
+            </p>
+          </div>
         </div>
       )}
     </header>

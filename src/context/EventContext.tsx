@@ -7,6 +7,8 @@ import {
   VendorItem,
   MoodboardItem,
   ActiveTab,
+  VenueItem,
+  BudgetEstimateBreakdown,
 } from '../types';
 import {
   initialEvents,
@@ -16,6 +18,8 @@ import {
   initialVendors,
   initialMoodboards,
 } from '../data/initialData';
+import { generateEventSpecificTasks, calculateRealisticDueDate } from '../utils/taskGenerator';
+import { buildVenueBudgetItems } from '../utils/budgetEngine';
 
 export type CurrencyCode = 'INR' | 'USD' | 'EUR' | 'GBP' | 'AED';
 
@@ -49,6 +53,13 @@ interface EventContextType {
   totalBudget: number;
   actualSpent: number;
   remainingBudget: number;
+  applyBudgetEstimate: (estimate: BudgetEstimateBreakdown) => void;
+  connectVenueToEvent: (venue: VenueItem) => void;
+
+  // Venues
+  savedVenues: VenueItem[];
+  saveVenue: (venue: VenueItem) => void;
+  removeSavedVenue: (venueId: string) => void;
 
   // Tasks
   tasks: TaskItem[];
@@ -59,6 +70,8 @@ interface EventContextType {
   totalTasks: number;
   completedTasks: number;
   taskCompletionPercentage: number;
+  generateTasksForEvent: (eventId?: string) => Promise<number>;
+  updateTaskDeadlinesForEvent: (eventId: string, newDate: string) => void;
 
   // Guests
   guests: GuestItem[];
@@ -187,6 +200,15 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   });
 
+  const [allSavedVenues, setAllSavedVenues] = useState<VenueItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('utsav_ai_saved_venues');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [currency, setCurrencyState] = useState<CurrencyCode>('INR');
 
   // Persistence to localStorage
@@ -199,10 +221,11 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       localStorage.setItem('utsav_ai_guests', JSON.stringify(allGuests));
       localStorage.setItem('utsav_ai_vendors', JSON.stringify(allVendors));
       localStorage.setItem('utsav_ai_moodboards', JSON.stringify(allMoodboards));
+      localStorage.setItem('utsav_ai_saved_venues', JSON.stringify(allSavedVenues));
     } catch (e) {
       console.warn('LocalStorage save failed:', e);
     }
-  }, [events, activeEventId, allBudget, allTasks, allGuests, allVendors, allMoodboards]);
+  }, [events, activeEventId, allBudget, allTasks, allGuests, allVendors, allMoodboards, allSavedVenues]);
 
   const rawActiveEvent = events.find(e => e.id === activeEventId) || events[0];
   
@@ -267,16 +290,11 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     ];
     setAllBudget(prev => [...defaultBudgets, ...prev]);
 
-    // Baseline checklist tasks
-    const defaultTasks: TaskItem[] = [
-      { id: `t-${Date.now()}-1`, eventId: newId, title: 'Finalize venue contract and advance booking deposit', category: 'Venue', priority: 'high', dueDate: data.date, completed: false, assignee: 'Lead Host' },
-      { id: `t-${Date.now()}-2`, eventId: newId, title: 'Conduct menu tasting with chosen culinary team', category: 'Catering', priority: 'high', dueDate: data.date, completed: false, assignee: 'Food Council' },
-      { id: `t-${Date.now()}-3`, eventId: newId, title: 'Approve floral swatches and mandap lighting blueprint', category: 'Decoration', priority: 'medium', dueDate: data.date, completed: false, assignee: 'Creative Director' },
-      { id: `t-${Date.now()}-4`, eventId: newId, title: 'Dispatch digital invitations and commence RSVP tracking', category: 'Invitations', priority: 'medium', dueDate: data.date, completed: false, assignee: 'RSVP Lead' },
-    ];
+    // Generate realistic, event-specific checklist tasks based on celebration parameters
+    const defaultTasks = generateEventSpecificTasks(newEvent);
     setAllTasks(prev => [...defaultTasks, ...prev]);
 
-    showToast(`Created new celebration "${nameVal}"!`, 'success');
+    showToast(`Created new celebration "${nameVal}" with ${defaultTasks.length} realistic tasks!`, 'success');
     return newId;
   };
 
@@ -291,6 +309,9 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       budget: partial.totalBudget || partial.budget || e.budget,
       totalBudget: partial.totalBudget || partial.budget || e.totalBudget,
     } : e));
+    if (partial.date) {
+      updateTaskDeadlinesForEvent(id, partial.date);
+    }
     showToast('Event dossier updated', 'success');
   };
 
@@ -375,6 +396,102 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     showToast('Budget line removed', 'info');
   };
 
+  const applyBudgetEstimate = (estimate: BudgetEstimateBreakdown) => {
+    if (!activeEvent) return;
+    const eventId = activeEvent.id;
+
+    // Update event total planned budget
+    updateEvent(eventId, {
+      budget: estimate.totalEstimatedExpense,
+      totalBudget: estimate.totalEstimatedExpense,
+    });
+
+    // Convert breakdown lines to verified BudgetItem list
+    const newBudgetItems: BudgetItem[] = estimate.items.map((line, idx) => ({
+      id: `b-est-${Date.now()}-${idx}`,
+      eventId,
+      category: line.category,
+      name: line.name,
+      planned: line.planned,
+      actual: 0,
+      status: 'Pending',
+      unit: line.unit,
+      unitPrice: line.unitPrice,
+      quantity: line.quantity,
+      verificationStatus: line.verificationStatus,
+      providerName: line.providerName,
+      sourceUrl: line.sourceUrl,
+      verifiedDate: line.verifiedDate,
+      isSecurityDeposit: line.isSecurityDeposit,
+      notes: line.formula ? `${line.formula} · ${line.notes || ''}` : line.notes,
+    }));
+
+    // Add security deposit as separate line if present
+    if (estimate.refundableSecurityDeposit > 0) {
+      newBudgetItems.push({
+        id: `b-est-dep-${Date.now()}`,
+        eventId,
+        category: 'Venue',
+        name: `Refundable Venue Security Deposit (${estimate.city})`,
+        planned: estimate.refundableSecurityDeposit,
+        actual: 0,
+        status: 'Pending',
+        unit: 'per_event',
+        unitPrice: estimate.refundableSecurityDeposit,
+        quantity: 1,
+        verificationStatus: 'published',
+        providerName: 'Venue Management Tariff',
+        isSecurityDeposit: true,
+        refundableDeposit: estimate.refundableSecurityDeposit,
+        notes: '100% refundable after event teardown and hall clearance inspection. Excluded from operating expense subtotals.',
+      });
+    }
+
+    // Replace budget lines for this event with newly estimated itemized breakdown
+    setAllBudget(prev => [
+      ...newBudgetItems,
+      ...prev.filter(b => b.eventId !== eventId),
+    ]);
+
+    showToast(`Applied ${estimate.tierLabel} budget (₹${estimate.totalEstimatedExpense.toLocaleString('en-IN')}) with ${newBudgetItems.length} verified lines!`, 'success');
+  };
+
+  const connectVenueToEvent = (venue: VenueItem) => {
+    if (!activeEvent) return;
+    const eventId = activeEvent.id;
+
+    // Update activeEvent's venue name, city, and location
+    updateEvent(eventId, {
+      venue: venue.name,
+      location: `${venue.locality}, ${venue.city}`,
+      city: venue.city,
+    });
+
+    // Build realistic budget items for this venue
+    const newItems = buildVenueBudgetItems(venue, eventId, activeEvent.guestCount || 100);
+
+    // Remove any previously connected venue line for this event to avoid duplicate entries
+    setAllBudget(prev => {
+      const filtered = prev.filter(b => b.eventId !== eventId || (!b.venueId && b.category !== 'Venue'));
+      return [...newItems, ...filtered];
+    });
+
+    showToast(`Connected "${venue.name}" to celebration! Added ${newItems.length} verified budget line(s).`, 'success');
+  };
+
+  const saveVenue = (venue: VenueItem) => {
+    setAllSavedVenues(prev => {
+      if (prev.some(v => v.id === venue.id)) return prev;
+      return [venue, ...prev];
+    });
+    showToast(`Saved "${venue.name}" to shortlist`, 'success');
+  };
+
+  const removeSavedVenue = (venueId: string) => {
+    setAllSavedVenues(prev => prev.filter(v => v.id !== venueId));
+    showToast('Venue removed from shortlist', 'info');
+  };
+
   // Tasks CRUD
   const addTask = (task: any) => {
     if (!currentEventId) return;
@@ -402,6 +519,96 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const deleteTask = (id: string) => {
     setAllTasks(prev => prev.filter(t => t.id !== id));
     showToast('Task deleted', 'info');
+  };
+
+  const generateTasksForEvent = async (targetEventId?: string): Promise<number> => {
+    const evtId = targetEventId || currentEventId;
+    const targetEvt = events.find(e => e.id === evtId) || activeEvent;
+    if (!targetEvt) return 0;
+
+    let newTasks: TaskItem[] = [];
+
+    // Attempt AI generation via /api/ai/generate-tasks
+    try {
+      const response = await fetch('/api/ai/generate-tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          eventType: targetEvt.eventType || targetEvt.type,
+          title: targetEvt.title || targetEvt.name,
+          date: targetEvt.date,
+          guestCount: targetEvt.guestCount,
+          budget: targetEvt.budget || targetEvt.totalBudget,
+          venue: targetEvt.venue,
+          location: targetEvt.location || targetEvt.city,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data.tasks) && data.tasks.length > 0) {
+          const existingSet = new Set(
+            allTasks.filter(t => t.eventId === evtId).map(t => t.title.toLowerCase().trim())
+          );
+          newTasks = data.tasks
+            .filter((t: any) => !existingSet.has((t.title || '').toLowerCase().trim()))
+            .map((t: any, idx: number) => ({
+              id: `task-ai-${Date.now()}-${idx}-${Math.random().toString(36).slice(2, 6)}`,
+              eventId: evtId,
+              title: t.title,
+              description: t.description || '',
+              category: t.category || 'General',
+              priority: (t.priority || 'medium').toLowerCase(),
+              dueDate: t.dueDate || targetEvt.date,
+              stage: t.stage || 'planning',
+              completed: false,
+              assignee: 'Host Council',
+              notes: t.description || '',
+            }));
+        }
+      }
+    } catch (e) {
+      console.warn('AI task generation error, falling back to local realistic templates:', e);
+    }
+
+    // Fallback or complement with local template generator
+    if (newTasks.length === 0) {
+      newTasks = generateEventSpecificTasks(targetEvt, allTasks);
+    }
+
+    if (newTasks.length > 0) {
+      setAllTasks(prev => [...newTasks, ...prev]);
+      showToast(`Added ${newTasks.length} realistic tasks for ${targetEvt.title || targetEvt.name}!`, 'success');
+    } else {
+      showToast('All recommended tasks for this celebration are already on your checklist.', 'info');
+    }
+
+    return newTasks.length;
+  };
+
+  const updateTaskDeadlinesForEvent = (eventId: string, newDate: string) => {
+    const targetEvt = events.find(e => e.id === eventId);
+    if (!targetEvt || !newDate) return;
+
+    const stageDaysMap: Record<string, number> = {
+      'planning': 18,
+      'one-week-before': 7,
+      'one-day-before': 1,
+      'event-day': 0,
+      'after-event': -1,
+    };
+
+    setAllTasks(prev => prev.map(t => {
+      if (t.eventId !== eventId || t.completed) return t;
+      const stage = (t.stage as string) || 'planning';
+      const suggestedDays = stageDaysMap[stage] ?? 7;
+      const newDueDate = calculateRealisticDueDate(newDate, suggestedDays);
+      return {
+        ...t,
+        dueDate: newDueDate,
+      };
+    }));
+
+    showToast(`Task deadlines adjusted to match the event date (${newDate})`, 'success');
   };
 
   // Guests CRUD
@@ -545,6 +752,11 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         totalBudget,
         actualSpent,
         remainingBudget,
+        applyBudgetEstimate,
+        connectVenueToEvent,
+        savedVenues: allSavedVenues,
+        saveVenue,
+        removeSavedVenue,
         tasks,
         addTask,
         toggleTask,
@@ -553,6 +765,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         totalTasks,
         completedTasks,
         taskCompletionPercentage,
+        generateTasksForEvent,
+        updateTaskDeadlinesForEvent,
         guests,
         addGuest,
         updateGuest,

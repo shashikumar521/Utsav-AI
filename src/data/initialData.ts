@@ -255,17 +255,201 @@ export const initialTasks: TaskItem[] = [
     completed: true,
     assignee: 'Sangeet Symphony'
   },
-  // Additional completed tasks to reach 28 completed / 36 total
-  ...Array.from({ length: 23 }).map((_, i) => ({
+  // Additional completed tasks for wedding
+  ...Array.from({ length: 6 }).map((_, i) => ({
     id: `t-auto-done-${i}`,
     eventId: 'evt-sunset-wedding',
     title: `Pre-wedding Milestone Checkpoint #${i + 6}: Protocol verified`,
+    description: 'Logistical checkpoint verified with lead event coordinator',
     category: ['Catering', 'Decoration', 'Logistics', 'Hospitality'][i % 4],
     priority: 'medium' as const,
     dueDate: '2025-10-15',
+    stage: 'planning',
     completed: true,
     assignee: 'Atelier Team'
-  }))
+  })),
+
+  // Aarav's 40th Birthday Tasks (evt-milestone-birthday on 2025-12-05)
+  {
+    id: 't-bday-1',
+    eventId: 'evt-milestone-birthday',
+    title: 'Decide the birthday theme and decoration colors',
+    description: 'Select champagne monolith and amber velvet palette for rooftop terrace',
+    category: 'Decorations',
+    priority: 'high',
+    dueDate: '2025-11-14',
+    stage: 'planning',
+    completed: true,
+    assignee: 'Aarav & Team'
+  },
+  {
+    id: 't-bday-2',
+    eventId: 'evt-milestone-birthday',
+    title: 'Set the party budget',
+    description: 'Allocate ₹3.5L across rooftop pavilion hire, jazz trio, and customized multi-course dining',
+    category: 'Budget',
+    priority: 'high',
+    dueDate: '2025-11-15',
+    stage: 'planning',
+    completed: true,
+    assignee: 'Aarav'
+  },
+  {
+    id: 't-bday-3',
+    eventId: 'evt-milestone-birthday',
+    title: 'Prepare the guest list & send invitations',
+    description: 'Compile list of 45 close friends and send digital invitations with dress code details',
+    category: 'Guests',
+    priority: 'high',
+    dueDate: '2025-11-17',
+    stage: 'planning',
+    completed: true,
+    assignee: 'Aarav'
+  },
+  {
+    id: 't-bday-4',
+    eventId: 'evt-milestone-birthday',
+    title: 'Book the party venue & confirm rooftop reservation',
+    description: 'Lock in Lake Pichola Rooftop Pavilion and pay deposit for evening exclusivity',
+    category: 'Venue',
+    priority: 'high',
+    dueDate: '2025-11-19',
+    stage: 'planning',
+    completed: true,
+    assignee: 'Host Council'
+  },
+  {
+    id: 't-bday-5',
+    eventId: 'evt-milestone-birthday',
+    title: 'Order the birthday cake and confirm custom design',
+    description: 'Order 3-tier dark Belgian chocolate truffle cake with edible gold leaf accents',
+    category: 'Food',
+    priority: 'high',
+    dueDate: '2025-11-21',
+    stage: 'planning',
+    completed: false,
+    assignee: 'Artisan Bakery'
+  },
+  {
+    id: 't-bday-6',
+    eventId: 'evt-milestone-birthday',
+    title: 'Plan the multi-course dining and signature drinks menu',
+    description: 'Finalize citrus welcome spritzers, gourmet hors d’oeuvres, and dinner courses',
+    category: 'Food',
+    priority: 'medium',
+    stage: 'planning',
+    dueDate: '2025-11-21',
+    completed: false,
+    assignee: 'Pavilion Chef'
+  },
+  {
+    id: 't-bday-7',
+    eventId: 'evt-milestone-birthday',
+    title: 'Buy balloons, ribbons, banners, and birthday decorations',
+    description: 'Procure gold metallic helium balloons, custom 40th milestone banner, and warm table candles',
+    category: 'Decorations',
+    priority: 'high',
+    dueDate: '2025-11-28',
+    stage: 'one-week-before',
+    completed: false,
+    assignee: 'Decor Team'
+  },
+  {
+    id: 't-bday-8',
+    eventId: 'evt-milestone-birthday',
+    title: 'Confirm cake order and delivery window to Lake Pichola',
+    description: 'Reconfirm delivery vehicle temperature control and scheduled 6:00 PM delivery time',
+    category: 'Food',
+    priority: 'high',
+    dueDate: '2025-11-30',
+    stage: 'one-week-before',
+    completed: false,
+    assignee: 'Bakery Lead'
+  },
+  {
+    id: 't-bday-9',
+    eventId: 'evt-milestone-birthday',
+    title: 'Follow up with guests who have not responded',
+    description: 'Check in with unconfirmed invitees to submit final headcount to venue kitchen',
+    category: 'Guests',
+    priority: 'medium',
+    dueDate: '2025-12-02',
+    stage: 'one-week-before',
+    completed: false,
+    assignee: 'Aarav'
+  },
+  {
+    id: 't-bday-10',
+    eventId: 'evt-milestone-birthday',
+    title: 'Prepare return gifts or party favors',
+    description: 'Assemble 45 bespoke gift boxes with artisanal chocolate truffles and thank-you tags',
+    category: 'Hospitality',
+    priority: 'medium',
+    dueDate: '2025-12-04',
+    stage: 'one-day-before',
+    completed: false,
+    assignee: 'Host Council'
+  },
+  {
+    id: 't-bday-11',
+    eventId: 'evt-milestone-birthday',
+    title: 'Confirm final guest count with pavilion manager',
+    description: 'Submit guaranteed 45 guest headcount for seating place cards and dinner covers',
+    category: 'Guests',
+    priority: 'high',
+    dueDate: '2025-12-04',
+    stage: 'one-day-before',
+    completed: false,
+    assignee: 'Aarav'
+  },
+  {
+    id: 't-bday-12',
+    eventId: 'evt-milestone-birthday',
+    title: 'Set up tables, chairs, and rooftop celebration area',
+    description: 'Position cocktail high-tops, dining banquets, and stage for acoustic jazz trio',
+    category: 'Venue',
+    priority: 'high',
+    dueDate: '2025-12-05',
+    stage: 'event-day',
+    completed: false,
+    assignee: 'Pavilion Staff'
+  },
+  {
+    id: 't-bday-13',
+    eventId: 'evt-milestone-birthday',
+    title: 'Set up the cake table, candles, and cake-cutting supplies',
+    description: 'Place cake under central chandelier with sparkler candles and dessert plates',
+    category: 'Food',
+    priority: 'high',
+    dueDate: '2025-12-05',
+    stage: 'event-day',
+    completed: false,
+    assignee: 'Lead Coordinator'
+  },
+  {
+    id: 't-bday-14',
+    eventId: 'evt-milestone-birthday',
+    title: 'Bring out the cake at 9:00 PM for milestone toast',
+    description: 'Coordinate jazz fanfare, dim lights, light sparklers, and take group birthday photos',
+    category: 'Food',
+    priority: 'high',
+    dueDate: '2025-12-05',
+    stage: 'event-day',
+    completed: false,
+    assignee: 'Lead Host'
+  },
+  {
+    id: 't-bday-15',
+    eventId: 'evt-milestone-birthday',
+    title: 'Distribute return gifts and thank departing guests',
+    description: 'Hand out bespoke gift boxes as guests bid farewell after midnight',
+    category: 'Hospitality',
+    priority: 'low',
+    dueDate: '2025-12-05',
+    stage: 'event-day',
+    completed: false,
+    assignee: 'Aarav'
+  }
 ];
 
 export const initialGuests: GuestItem[] = [

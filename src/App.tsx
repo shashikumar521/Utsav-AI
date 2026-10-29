@@ -23,10 +23,10 @@ const AppContent: React.FC = () => {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [activeGuideId, setActiveGuideId] = useState<string>(editorialFieldGuides[0].id);
 
-  // Check if welcome was already dismissed this session
+  // Check if welcome intro was already completed this session
   const [showWelcome, setShowWelcome] = useState<boolean>(() => {
     try {
-      return sessionStorage.getItem('utsav_welcome_dismissed') !== 'true';
+      return sessionStorage.getItem('utsav_celebration_intro_session') !== 'true';
     } catch {
       return true;
     }
@@ -36,6 +36,30 @@ const AppContent: React.FC = () => {
     setCurrentScreen('dashboard');
     setActiveTab('overview');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleExploreCelebrations = () => {
+    setCurrentScreen('landing');
+    setTimeout(() => {
+      const el = document.getElementById('popular-events');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 400, behavior: 'smooth' });
+      }
+    }, 120);
+  };
+
+  const handleDismissWelcome = (target?: 'plan' | 'explore' | 'skip') => {
+    setShowWelcome(false);
+    if (target === 'plan') {
+      handleStartPlanning();
+    } else if (target === 'explore') {
+      handleExploreCelebrations();
+    } else {
+      setCurrentScreen('landing');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleOpenGuidesModal = (guideId?: string) => {
@@ -61,12 +85,7 @@ const AppContent: React.FC = () => {
       {/* Celebration Opening Welcome Experience */}
       <WelcomeExperience 
         isOpen={showWelcome} 
-        onDismiss={(target) => {
-          setShowWelcome(false);
-          if (target === 'plan' || target === 'dashboard') {
-            handleStartPlanning();
-          }
-        }} 
+        onDismiss={handleDismissWelcome} 
       />
 
       {/* Screen Router */}
@@ -101,6 +120,7 @@ const AppContent: React.FC = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           onOpenFieldGuide={(guideId) => handleOpenGuidesModal(guideId)}
+          onReopenWelcome={() => setShowWelcome(true)}
         />
       )}
 

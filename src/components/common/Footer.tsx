@@ -4,73 +4,70 @@ import { ActiveTab } from '../../types';
 
 interface FooterProps {
   onNavigate: (tab: ActiveTab) => void;
-  onReopenWelcome: () => void;
+  onReopenWelcome?: () => void;
   onOpenGuidesModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  onNavigate,
-  onReopenWelcome,
-  onOpenGuidesModal,
-}) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onReopenWelcome }) => {
   return (
-    <footer className="w-full bg-[#F4EFE6] border-t border-[#E8E1D5] py-8 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#4C454A]">
+    <footer className="w-full bg-[#F4EFE6] border-t border-[#E8E1D5] py-6 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#4C454A]">
         {/* Brand identity */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Logo size="sm" showText={false} />
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <span className="font-serif text-sm font-bold text-[#392538]">Utsav AI</span>
-            <span className="hidden sm:inline text-[#E8E1D5]">|</span>
-            <span className="italic text-[#755a2a]">Every celebration, beautifully planned.</span>
-          </div>
+          <span className="font-serif text-sm font-semibold text-[#392538]">Utsav AI</span>
+          <span className="text-[#DFD7C7]">·</span>
+          <span>Every celebration, beautifully planned.</span>
         </div>
 
-        {/* Actionable page links */}
-        <div className="flex flex-wrap items-center justify-center gap-6 font-medium">
+        {/* Useful quick links */}
+        <div className="flex items-center gap-5 font-medium">
           <button
-            onClick={() => onNavigate('landing')}
+            onClick={() => {
+              onNavigate('landing');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="hover:text-[#392538] transition-colors"
           >
             Home
           </button>
           <button
+            onClick={() => onNavigate('events')}
+            className="hover:text-[#392538] transition-colors"
+          >
+            Explore Events
+          </button>
+          <button
+            onClick={() => {
+              onNavigate('landing');
+              setTimeout(() => {
+                document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
+            className="hover:text-[#392538] transition-colors"
+          >
+            How It Works
+          </button>
+          <button
             onClick={() => onNavigate('overview')}
-            className="hover:text-[#392538] transition-colors"
+            className="hover:text-[#392538] transition-colors font-semibold text-[#392538]"
           >
-            Command Center
+            Dashboard
           </button>
-          <button
-            onClick={() => onNavigate('budget')}
-            className="hover:text-[#392538] transition-colors"
-          >
-            Budget Studio
-          </button>
-          <button
-            onClick={() => onNavigate('timeline')}
-            className="hover:text-[#392538] transition-colors"
-          >
-            Timeline
-          </button>
-          {onOpenGuidesModal && (
+          {onReopenWelcome && (
             <button
-              onClick={onOpenGuidesModal}
-              className="hover:text-[#392538] transition-colors"
+              onClick={onReopenWelcome}
+              className="text-[#755a2a] hover:text-[#392538] transition-colors font-medium flex items-center gap-1"
             >
-              Field Guides
+              <span className="material-symbols-outlined text-sm text-[#C5A46D]">auto_awesome</span>
+              <span>Replay Intro</span>
             </button>
           )}
-          <button
-            onClick={onReopenWelcome}
-            className="text-[#755a2a] hover:text-[#392538] hover:underline transition-colors"
-          >
-            Replay Intro
-          </button>
         </div>
 
         {/* Copyright notice */}
-        <div className="text-[11px] text-[#4C454A]/80">
-          © 2026 Utsav AI Technologies. All rights reserved.
+        <div className="text-[11px] text-[#4C454A]/70">
+          © 2026 Utsav AI. All rights reserved.
         </div>
       </div>
     </footer>

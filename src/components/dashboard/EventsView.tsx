@@ -96,10 +96,10 @@ export const EventsView: React.FC<EventsViewProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-[#E8E1D5] shadow-xs">
         <div>
           <h2 className="font-serif text-xl font-bold text-[#392538]">
-            Celebration Dossiers
+            My Events
           </h2>
           <p className="text-xs text-[#4C454A] mt-0.5">
-            Manage your curated celebrations, edit logistical parameters, or switch active planning atelier.
+            View and manage all your celebrations, or switch which event you are planning.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export const EventsView: React.FC<EventsViewProps> = ({
           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#392538] text-white text-xs font-semibold hover:bg-[#231123] transition shadow-xs self-start sm:self-auto"
         >
           <span className="material-symbols-outlined text-sm text-[#C5A46D]">add</span>
-          <span>Create New Event</span>
+          <span>Create Event</span>
         </button>
       </div>
 
@@ -133,7 +133,7 @@ export const EventsView: React.FC<EventsViewProps> = ({
                   </span>
                   {isActive && (
                     <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#4A6B53]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B53]" /> Active Dossier
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#4A6B53]" /> Active Event
                     </span>
                   )}
                 </div>

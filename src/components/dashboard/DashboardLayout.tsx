@@ -4,12 +4,13 @@ import { Logo } from '../common/Logo';
 import { 
   LayoutDashboard, Calendar, DollarSign, CheckSquare, Palette, 
   Users, Bot, Settings, Plus, ChevronDown, ArrowLeft, Menu, X, 
-  Sparkles, Clock, Globe
+  Sparkles, Clock, Globe, MapPin
 } from 'lucide-react';
 
 import { OverviewView } from './OverviewView';
 import { EventsView } from './EventsView';
 import { BudgetView } from './BudgetView';
+import { VenueDiscoveryView } from './VenueDiscoveryView';
 import { TimelineView } from './TimelineView';
 import { MoodboardView } from './MoodboardView';
 import { GuestsVendorsView } from './GuestsVendorsView';
@@ -20,9 +21,10 @@ import { NewEventModal } from './NewEventModal';
 interface DashboardLayoutProps {
   onBackToHome: () => void;
   onOpenFieldGuide: (guideId: string) => void;
+  onReopenWelcome?: () => void;
 }
 
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, onOpenFieldGuide }) => {
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, onOpenFieldGuide, onReopenWelcome }) => {
   const { 
     currentEvent, 
     events, 
@@ -41,13 +43,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, 
 
   const navItems = [
     { id: 'overview' as const, label: 'Overview', icon: LayoutDashboard },
-    { id: 'events' as const, label: 'All Celebrations', icon: Calendar, badge: events.length },
-    { id: 'budget' as const, label: 'Budget Studio', icon: DollarSign },
-    { id: 'timeline' as const, label: 'Timeline & Tasks', icon: CheckSquare },
-    { id: 'moodboard' as const, label: 'Moodboard & Decor', icon: Palette },
+    { id: 'events' as const, label: 'My Events', icon: Calendar, badge: events.length },
+    { id: 'budget' as const, label: 'Budget & Estimator', icon: DollarSign },
+    { id: 'venues' as const, label: 'Discover Venues', icon: MapPin },
+    { id: 'timeline' as const, label: 'Tasks & Timeline', icon: CheckSquare },
+    { id: 'moodboard' as const, label: 'Moodboard', icon: Palette },
     { id: 'guests-vendors' as const, label: 'Guests & Vendors', icon: Users },
-    { id: 'ai-assistant' as const, label: 'AI Concierge', icon: Bot, isAi: true },
-    { id: 'settings' as const, label: 'Settings & Dossier', icon: Settings },
+    { id: 'ai-assistant' as const, label: 'AI Planner', icon: Bot, isAi: true },
+    { id: 'settings' as const, label: 'Settings', icon: Settings },
   ];
 
   return (
@@ -70,7 +73,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, 
               className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-plum/70 hover:text-plum px-2.5 py-1.5 rounded-lg hover:bg-ivory-warm transition-colors"
             >
               <ArrowLeft size={14} />
-              <span>Public Site</span>
+              <span>Back to Home</span>
             </button>
 
             <div className="h-5 w-px bg-plum/10 hidden sm:block" />
@@ -162,6 +165,19 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, 
                 <option value="AED">AED</option>
               </select>
             </div>
+
+            {/* Replay Intro Action */}
+            {onReopenWelcome && (
+              <button
+                onClick={onReopenWelcome}
+                className="px-2.5 py-1.5 rounded-lg text-plum/70 hover:text-plum hover:bg-ivory-warm transition-colors inline-flex items-center gap-1 text-xs font-semibold"
+                title="Replay celebration welcome intro"
+                aria-label="Replay Intro"
+              >
+                <Sparkles size={14} className="text-gold" />
+                <span className="hidden sm:inline">Intro</span>
+              </button>
+            )}
 
             {/* Quick Action Button */}
             <button
@@ -305,7 +321,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, 
                   className="w-full py-2 px-3 text-xs font-semibold text-plum/70 hover:text-plum hover:bg-ivory-warm rounded-lg flex items-center gap-2"
                 >
                   <ArrowLeft size={14} />
-                  Return to Public Site
+                  Back to Home
                 </button>
               </div>
             </div>
@@ -329,7 +345,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ onBackToHome, 
                 onNavigateToOverview={() => setActiveTab('overview')}
               />
             )}
-            {activeTab === 'budget' && <BudgetView onShowToast={showToast} />}
+            {activeTab === 'budget' && (
+              <BudgetView 
+                onShowToast={showToast} 
+                onNavigateToVenues={() => setActiveTab('venues')}
+              />
+            )}
+            {activeTab === 'venues' && (
+              <VenueDiscoveryView
+                onShowToast={showToast}
+                onNavigateToBudget={() => setActiveTab('budget')}
+              />
+            )}
             {activeTab === 'timeline' && <TimelineView onShowToast={showToast} />}
             {activeTab === 'moodboard' && <MoodboardView onShowToast={showToast} />}
             {activeTab === 'guests-vendors' && <GuestsVendorsView />}
