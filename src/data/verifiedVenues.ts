@@ -1,4 +1,4 @@
-import { VenueItem } from '../types';
+import type { VenueItem } from '../types/index.ts';
 
 /**
  * Verified Real-World Venue Catalog.

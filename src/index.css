@@ -3,10 +3,15 @@
 @theme {
   --color-primary: #392538;
   --color-primary-dark: #231123;
+  --color-plum: #392538;
+  --color-plum-light: #4e344d;
   --color-secondary: #C5A46D;
   --color-secondary-dark: #755a2a;
+  --color-gold: #C5A46D;
+  --color-gold-dark: #755a2a;
   --color-terracotta: #C97862;
   --color-ivory: #FAF7F0;
+  --color-ivory-warm: #FAF7F0;
   --color-ink: #252321;
   
   --color-surface: #FAF7F0;

@@ -1,12 +1,12 @@
-import {
+import type {
   BudgetEstimatorInput,
   BudgetEstimateBreakdown,
   BudgetBreakdownLine,
   DecorStyle,
   BudgetItem,
   VenueItem,
-} from '../types';
-import { getVerifiedPrice, venueSecurityDepositRules } from '../data/realPricingRegistry';
+} from '../types/index.ts';
+import { getVerifiedPrice, venueSecurityDepositRules } from '../data/realPricingRegistry.ts';
 
 /**
  * Calculates a transparent, realistic, real-world itemized event budget

@@ -1,5 +1,4 @@
-import { VenueItem, VenueType } from '../types';
-import { verifiedVenuesRegistry } from '../data/verifiedVenues';
+import type { VenueItem, VenueType } from '../types/index.ts';
 
 export interface VenueSearchParams {
   city?: string;

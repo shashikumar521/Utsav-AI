@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { type Request, type Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -149,7 +149,7 @@ If you suggest concrete new tasks or budget items, you must include a JSON block
 Keep the conversational tone refined, gracious, and authentic to celebration culture in India and abroad.`;
 
         const response = await genAI.models.generateContent({
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3.8-flash',
           contents: prompt,
         });
 
@@ -248,7 +248,7 @@ Return ONLY a valid JSON object matching this schema:
 }`;
 
         const response = await genAI.models.generateContent({
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3.8-flash',
           contents: prompt,
           config: {
             responseMimeType: 'application/json',
@@ -341,7 +341,7 @@ Return ONLY a JSON array of objects with this schema:
 ]`;
 
         const response = await genAI.models.generateContent({
-          model: 'gemini-2.5-flash',
+          model: 'gemini-3.8-flash',
           contents: prompt,
           config: {
             responseMimeType: 'application/json',
@@ -501,13 +501,13 @@ app.get('/api/venues/search', async (req: Request, res: Response) => {
     const sortBy = (req.query.sortBy as string) || 'recommended';
 
     // 1. Fetch verified catalog
-    const { verifiedVenuesRegistry } = await import('./src/data/verifiedVenues.js');
+    const { verifiedVenuesRegistry } = await import('./src/data/verifiedVenues.ts');
 
     // 2. Query live OpenStreetMap venues for the city
     const liveOsmVenues = await queryOverpassVenues(city);
 
     // 3. Combine pools and deduplicate
-    const { deduplicateVenues, searchAndFilterVenues } = await import('./src/utils/venueDiscovery.js');
+    const { searchAndFilterVenues } = await import('./src/utils/venueDiscovery.ts');
     const combinedPool = [...verifiedVenuesRegistry, ...liveOsmVenues];
 
     const result = searchAndFilterVenues(combinedPool as any, {
@@ -556,7 +556,7 @@ app.post('/api/budget/estimate', async (req: Request, res: Response) => {
       requiredServices = ['catering', 'decoration', 'photography', 'entertainment'],
     } = req.body;
 
-    const { calculateRealWorldBudget, generateComparisonTiers } = await import('./src/utils/budgetEngine.js');
+    const { calculateRealWorldBudget, generateComparisonTiers } = await import('./src/utils/budgetEngine.ts');
 
     const estimate = calculateRealWorldBudget({
       eventType,

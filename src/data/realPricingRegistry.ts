@@ -1,4 +1,4 @@
-import { BudgetCategory, PriceVerificationStatus, PricingUnit, DecorStyle, FoodPreference, VenueType } from '../types';
+import type { BudgetCategory, PriceVerificationStatus, PricingUnit, DecorStyle, FoodPreference, VenueType } from '../types/index.ts';
 
 export interface VerifiedPriceEntry {
   id: string;
